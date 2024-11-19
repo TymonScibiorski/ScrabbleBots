@@ -12,6 +12,7 @@ public class Algo {
     }
 
     public static ArrayList<String> foundWords(int space, char[] letters){
+        // This function searches wordlists and finds words that could be constructed with the given letters in the given space.
         ArrayList<String> foundWords = new ArrayList<>();
 
 
@@ -20,19 +21,19 @@ public class Algo {
     }
 
     public static ArrayList<Scanner> scannersToBeSearched(int space, char[] letters) throws FileNotFoundException {
+        // This function returns scanners of wordlists that will be searched through to find words that could be constructed with the given letters in the given space.
         ArrayList<Scanner> scannersToBeSearched = new ArrayList<>();
         int constraints = constraints(space, letters);
 
-
-        if (constraints == 3){
-            scannersToBeSearched.add(new Scanner(new File("src\\testWords3")));
-            scannersToBeSearched.add(new Scanner(new File("src\\testWords2")));
+        for (int i = 1; i <= constraints; i++) {
+            String pathname = "src\\words" + i + ".txt";
+            scannersToBeSearched.add(new Scanner(new File(pathname)));
         }
 
         return scannersToBeSearched;
     }
 
-    private static int constraints(int space, char[] letters) {
+    public static int constraints(int space, char[] letters) {
         int constrains = space;
         if (space < letters.length) {
             constrains = space;

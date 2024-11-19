@@ -21,13 +21,13 @@ public class Main {
 //3. Space
 
 // Goals:
-// Has to work. Doesn't need to be fast nor resourceful
+// Has to dispense out words that can be created with given letters and within a determined, confined space. Doesn't need to be fast nor resourceful.
 
 //Pre steps:
 // Vet the dictionary, sort words by length and throw out words longer than 15 letters long. DONE
 
 //Steps:
-//1. Throw out words that are longer than the space given
+//1. Throw out words that are longer than the space given or amount of letters given DONE
 //2. For through dictionary
 //3. For through letters
 //4. Check if the word is made of letters
