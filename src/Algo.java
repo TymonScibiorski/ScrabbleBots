@@ -36,7 +36,7 @@ public class Algo {
 
 
     public static boolean canWordBeUsed(String word, char[] letters){
-        String pattern = "^[" + Arrays.toString(letters) +"]{" + letters.length+ "}$";
+        String pattern = "^[" + Arrays.toString(letters) +"]{2" +letters.length + "}$";
         return word.matches(pattern);
     }
 
