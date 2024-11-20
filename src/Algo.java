@@ -2,21 +2,17 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.*;
 
 public class Algo {
     public static ArrayList<String> output(int space, String lettersStr) throws IOException {
-        char[] letters = lettersStr.toCharArray();
+        HashMap<Character, Integer> map = stringToHashMap(lettersStr);
 
-        return foundWords(space, letters);
+        return foundWords(space, map);
     }
 
 
-    public static ArrayList<String> foundWords(int space, char[] letters) throws IOException {
+    public static ArrayList<String> foundWords(int space, HashMap<Character, Integer> letters) throws IOException {
         // This function searches wordlists and finds words that could be constructed with the given letters in the given space.
         ArrayList<String> words = new ArrayList<>();
 //        ArrayList<BufferedReader> readers = readersToBeSearched(space, letters);
@@ -35,12 +31,20 @@ public class Algo {
     }
 
 
-    public static boolean canWordBeUsed(String word, char[] letters){
-        String pattern = "^[" + Arrays.toString(letters) +"]{2" +letters.length + "}$";
-        return word.matches(pattern);
+
+    public static boolean canWordBeUsed(String word, HashMap<Character, Integer> letters){
+        HashMap<Character, Integer> wordLetter = stringToHashMap(word);
+
+        for (Map.Entry<Character, Integer> entry : wordLetter.entrySet()) {
+            
+        }
+
+        return false;
     }
 
-    public static ArrayList<Scanner> scannersToBeSearched(int space, char[] letters) throws FileNotFoundException {
+
+
+    public static ArrayList<Scanner> scannersToBeSearched(int space, HashMap<Character, Integer> letters) throws FileNotFoundException {
         // This function returns scanners of wordlists that will be searched through to find words that could be constructed with the given letters in the given space.
         ArrayList<Scanner> scannersToBeSearched = new ArrayList<>();
         int constraints = constraints(space, letters);
@@ -53,7 +57,7 @@ public class Algo {
         return scannersToBeSearched;
     }
 
-    public static ArrayList<BufferedReader> readersToBeSearched(int space, char[] letters) throws FileNotFoundException {
+    public static ArrayList<BufferedReader> readersToBeSearched(int space, HashMap<Character, Integer> letters) throws FileNotFoundException {
         // This function returns scanners of wordlists that will be searched through to find words that could be constructed with the given letters in the given space.
         ArrayList<BufferedReader> readersToBeSearched = new ArrayList<>();
         int constraints = constraints(space, letters);
@@ -67,12 +71,23 @@ public class Algo {
     }
 
 
-    public static int constraints(int space, char[] letters) {
-        int constrains = letters.length;
-        if (space < letters.length) {
+    public static int constraints(int space, HashMap<Character, Integer> letters) {
+        int constrains = letters.size();
+        if (space < letters.size()) {
             constrains = space;
         }
 
         return constrains;
+    }
+
+    private static HashMap<Character, Integer> stringToHashMap(String word) {
+        HashMap<Character, Integer> map = new HashMap<>();
+
+        for(char c : word.toCharArray()){
+            int occurences = map.getOrDefault(c, 0) + 1;
+            map.put(c, occurences);
+        }
+
+        return map;
     }
 }

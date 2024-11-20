@@ -43,4 +43,10 @@ public class Main {
 //4. Return a list of words that from the dictionary that were made out of the given letters and fitted in the confined space
 
 //How to check if a word is made of letters:
-//1. just regex it DONE
+//1. Sort the given list and assign the number of times a given letter, on a seperate function
+//2.
+
+/*
+How to check if a word is made out of the given letters, by Wojtek:
+1.
+ */
