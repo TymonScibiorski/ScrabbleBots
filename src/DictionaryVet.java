@@ -5,12 +5,53 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class DictionaryVet {
+
+
+    public static void DictionaryVet() {
+        try{
+            File inputFile = new File("src\\slowa.txt");
+            Scanner scanner = new Scanner(inputFile);
+            FileWriter outputFile = new FileWriter("src\\vettedDictionary.txt");
+            while (scanner.hasNextLine()) {
+                String word = scanner.nextLine();
+                if (wordMatchesPattern(word)){
+                    outputFile.write(word + "\n");
+                }
+            }
+            outputFile.close();
+
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public static boolean wordMatchesPattern(String word){
+        if (word.matches("^[a-pr-uwyzęąśżźćółń]{2,15}$")){
+            return true;
+        }
+        return false;
+    }
+
+
     public static void CreateDifferentDictionaries() {
         try{
             File inputFile = new File("src\\vettedDictionary.txt");
             Scanner scanner = new Scanner(inputFile);
 
-            FileWriter words1 = new FileWriter("src\\words1.txt");
+//            for (int i = 2; i < 16; i++) {
+//                FileWriter fileWriter = new FileWriter("src\\words" + i + ".txt");
+//                while (scanner.hasNextLine()) {
+//                    String word = scanner.nextLine();
+//                    if (word.length() == i) {
+//                        fileWriter.write(scanner.nextLine() + "\n");
+//                    }
+//                }
+//                fileWriter.close();
+//            }
+
             FileWriter words2 = new FileWriter("src\\words2.txt");
             FileWriter words3 = new FileWriter("src\\words3.txt");
             FileWriter words4 = new FileWriter("src\\words4.txt");
@@ -72,7 +113,6 @@ public class DictionaryVet {
                 }
             }
 
-            words1.close();
             words2.close();
             words3.close();
             words4.close();
@@ -94,33 +134,4 @@ public class DictionaryVet {
             throw new RuntimeException(e);
         }
     }
-
-    public static void DictionaryVet() {
-        try{
-            File inputFile = new File("src\\MasterWordList.txt");
-            Scanner scanner = new Scanner(inputFile);
-            FileWriter outputFile = new FileWriter("src\\vettedDictionary.txt");
-            while (scanner.hasNextLine()) {
-                String word = scanner.nextLine();
-                if (wordMatchesPattern(word)){
-                    outputFile.write(word + "\n");
-                }
-            }
-            outputFile.close();
-
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-    }
-
-    public static boolean wordMatchesPattern(String word){
-        if (word.matches("^[a-pr-uwyzęąśżźćółń]{2,15}$")){
-            return true;
-        }
-        return false;
-    }
-
 }
