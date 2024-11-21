@@ -6,7 +6,7 @@ public class Main {
         long startTime = System.currentTimeMillis();
 
         try{
-            ArrayList<String> wordsForOutput = Algo.output(14, "upad", "");
+            ArrayList<String> wordsForOutput = Algo.output(14, "gułag", "", "");
             for (String word : wordsForOutput){
 
                 System.out.println(word);
@@ -19,8 +19,6 @@ public class Main {
         long endTime = System.currentTimeMillis();
         long elapsedTime = endTime - startTime;
         System.out.println("Elapsed time: " + elapsedTime + " ms");
-
-
        }
     }
 

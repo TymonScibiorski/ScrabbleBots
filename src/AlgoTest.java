@@ -14,16 +14,16 @@ public class AlgoTest {
 
     @Test
     public void canWordBeUsed() {
-        Assert.assertTrue(Algo.canWordBeUsed("dupa", "adpu"));
-        Assert.assertTrue(Algo.canWordBeUsed("afganistan", "aaafginnst"));
-        Assert.assertTrue(Algo.canWordBeUsed("afganistan", "aaafginnst"));
-        Assert.assertTrue(Algo.canWordBeUsed("backdown", "abcdknow"));
+        Assert.assertTrue(Algo.canWordBeUsed("afganistan", "aaafginnst", "afgani", ""));
+        Assert.assertTrue(Algo.canWordBeUsed("afganistan", "aaafginnst", "", "stan"));
+        Assert.assertTrue(Algo.canWordBeUsed("afganistan", "aaafginnst", "", ""));
+        Assert.assertTrue(Algo.canWordBeUsed("backdown", "abcdknow", "", ""));
 
-        Assert.assertFalse(Algo.canWordBeUsed("backdown", "abcdkno"));
-        Assert.assertFalse(Algo.canWordBeUsed("afganistan", "aaafginns"));
-        Assert.assertFalse(Algo.canWordBeUsed("żydom", "domom"));
-        Assert.assertFalse(Algo.canWordBeUsed("żydom", "domom"));
-        Assert.assertFalse(Algo.canWordBeUsed("żydom", "dżdży"));
+        Assert.assertFalse(Algo.canWordBeUsed("backdown", "abcdkno", "", ""));
+        Assert.assertFalse(Algo.canWordBeUsed("afganistan", "aaafginns", "", ""));
+        Assert.assertFalse(Algo.canWordBeUsed("francuz", "zucnarf", "fa", ""));
+        Assert.assertFalse(Algo.canWordBeUsed("francuz", "zucnarf", "", "az"));
+
     }
 
     @Test

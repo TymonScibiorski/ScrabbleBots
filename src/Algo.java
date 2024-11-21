@@ -4,12 +4,12 @@ import java.io.IOException;
 import java.util.*;
 
 public class Algo {
-    public static ArrayList<String> output(int space, String lettersStr, String endsIn) throws IOException {
-        return foundWords(space, lettersStr, endsIn);
+    public static ArrayList<String> output(int space, String lettersStr, String beginsWith, String endsIn) throws IOException {
+        return foundWords(space, lettersStr, beginsWith, endsIn);
     }
 
 
-    public static ArrayList<String> foundWords(int space, String letters, String endsWith) throws IOException {
+    public static ArrayList<String> foundWords(int space, String letters, String beginsWith, String endsWith) throws IOException {
         // This function searches wordlists and finds words that could be constructed with the given letters in the given space.
         ArrayList<String> words = new ArrayList<>();
 //        ArrayList<BufferedReader> readers = readersToBeSearched(space, letters);
@@ -19,10 +19,7 @@ public class Algo {
             while (scanner.hasNextLine()) {
                 String word = scanner.nextLine();
 
-                if (canWordBeUsed(word, letters)){
-                    if (!endsWith.isBlank() && !word.endsWith(endsWith)) {
-                        continue;
-                    }
+                if (canWordBeUsed(word, letters, beginsWith, endsWith)) {
                     words.add(word);
                 }
             }
@@ -31,17 +28,23 @@ public class Algo {
     }
 
 
-    public static boolean canWordBeUsed(String word, String playaLettersStr) {
+    public static boolean canWordBeUsed(String word, String playaLettersStr, String beginsWith, String endsWith) {
+        //This method checks if a given word can be constructed with the Player's letters and if it starts and ends with optionally specified strings
         HashMap<Character, Integer> checkedWord = stringToHashMap(word);
         HashMap<Character, Integer> playaLetters = stringToHashMap(playaLettersStr);
 
         for (Map.Entry<Character, Integer> entry : checkedWord.entrySet()) {
             int amountOfTheCheckedLetterInPlayaLetters = playaLetters.getOrDefault(entry.getKey(), 0);
 
-            if ((amountOfTheCheckedLetterInPlayaLetters == 0 || amountOfTheCheckedLetterInPlayaLetters < checkedWord.get(entry.getKey()))) {
+            if ((amountOfTheCheckedLetterInPlayaLetters < checkedWord.get(entry.getKey()))) {
                 return false;
             }
-
+            if (!beginsWith.isBlank() && !word.startsWith(beginsWith)) {
+                return false;
+            }
+            if (!endsWith.isBlank() && !word.endsWith(endsWith)) {
+                return false;
+            }
         }
 
         return true;
