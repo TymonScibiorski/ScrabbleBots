@@ -1,17 +1,15 @@
-import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
 public class Algo {
-    public static ArrayList<String> output(int space, String lettersStr) throws IOException {
-
-        return foundWords(space, lettersStr);
+    public static ArrayList<String> output(int space, String lettersStr, String endsIn) throws IOException {
+        return foundWords(space, lettersStr, endsIn);
     }
 
 
-    public static ArrayList<String> foundWords(int space, String letters) throws IOException {
+    public static ArrayList<String> foundWords(int space, String letters, String endsWith) throws IOException {
         // This function searches wordlists and finds words that could be constructed with the given letters in the given space.
         ArrayList<String> words = new ArrayList<>();
 //        ArrayList<BufferedReader> readers = readersToBeSearched(space, letters);
@@ -20,9 +18,12 @@ public class Algo {
         for (Scanner scanner : scanners) {
             while (scanner.hasNextLine()) {
                 String word = scanner.nextLine();
-                if (canWordBeUsed(word, letters)){
-                    words.add(word);
 
+                if (canWordBeUsed(word, letters)){
+                    if (!endsWith.isBlank() && !word.endsWith(endsWith)) {
+                        continue;
+                    }
+                    words.add(word);
                 }
             }
         }
@@ -30,14 +31,14 @@ public class Algo {
     }
 
 
-    public static boolean canWordBeUsed(String word, String playaLettersStr){
+    public static boolean canWordBeUsed(String word, String playaLettersStr) {
         HashMap<Character, Integer> checkedWord = stringToHashMap(word);
         HashMap<Character, Integer> playaLetters = stringToHashMap(playaLettersStr);
 
         for (Map.Entry<Character, Integer> entry : checkedWord.entrySet()) {
-            int amountOfLetterInPlayaLetters = playaLetters.getOrDefault(entry.getKey(), 0);
+            int amountOfTheCheckedLetterInPlayaLetters = playaLetters.getOrDefault(entry.getKey(), 0);
 
-            if (amountOfLetterInPlayaLetters == 0 || amountOfLetterInPlayaLetters < checkedWord.get(entry.getKey())) {
+            if ((amountOfTheCheckedLetterInPlayaLetters == 0 || amountOfTheCheckedLetterInPlayaLetters < checkedWord.get(entry.getKey()))) {
                 return false;
             }
 
@@ -52,7 +53,7 @@ public class Algo {
         ArrayList<Scanner> scannersToBeSearched = new ArrayList<>();
         int constraints = constraints(space, letters.length());
 
-        for (int i = constraints; i > 1; i--) {
+        for (int i = 2; i <= constraints; i++) {
             String pathname = "src\\words" + i + ".txt";
             scannersToBeSearched.add(new Scanner(new FileReader(pathname)));
         }

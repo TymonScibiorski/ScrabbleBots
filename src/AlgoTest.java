@@ -1,14 +1,8 @@
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Scanner;
+
 
 
 public class AlgoTest {
@@ -22,10 +16,12 @@ public class AlgoTest {
     public void canWordBeUsed() {
         Assert.assertTrue(Algo.canWordBeUsed("dupa", "adpu"));
         Assert.assertTrue(Algo.canWordBeUsed("afganistan", "aaafginnst"));
+        Assert.assertTrue(Algo.canWordBeUsed("afganistan", "aaafginnst"));
         Assert.assertTrue(Algo.canWordBeUsed("backdown", "abcdknow"));
 
         Assert.assertFalse(Algo.canWordBeUsed("backdown", "abcdkno"));
         Assert.assertFalse(Algo.canWordBeUsed("afganistan", "aaafginns"));
+        Assert.assertFalse(Algo.canWordBeUsed("żydom", "domom"));
         Assert.assertFalse(Algo.canWordBeUsed("żydom", "domom"));
         Assert.assertFalse(Algo.canWordBeUsed("żydom", "dżdży"));
     }
