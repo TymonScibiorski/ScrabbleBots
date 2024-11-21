@@ -6,8 +6,9 @@ public class Main {
         long startTime = System.currentTimeMillis();
 
         try{
-            ArrayList<String> wordsForOutput = Algo.output(10, "żeyodz");
+            ArrayList<String> wordsForOutput = Algo.output(14, "rnłfo");
             for (String word : wordsForOutput){
+
                 System.out.println(word);
             }
         }
@@ -42,11 +43,15 @@ public class Main {
 //3. Check if the word is made of the given letters
 //4. Return a list of words that from the dictionary that were made out of the given letters and fitted in the confined space
 
-//How to check if a word is made of letters:
-//1. Sort the given list and assign the number of times a given letter, on a seperate function
-//2.
 
 /*
-How to check if a word is made out of the given letters, by Wojtek:
-1.
+How to check if a word is made out of the given letters:
+1. Parse the checked word and the given letters to a hashmap DONE
+2. For through letters from the checked word: DONE
+3. Take a single letter from the checked word. DONE
+4. Check if the single letter from the checked word appears in the given letters set. If it doesn't, return false. DONE
+5. Get the amount of the approved letter in the player's letters set. DONE
+6. Get the amount of the approved letter in the checkWord set. DONE
+7. If the amount from the 5th point is smaller than the amount from the 6th, return false. DONE
+6. Return true. DONE
  */

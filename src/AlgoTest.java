@@ -20,14 +20,14 @@ public class AlgoTest {
 
     @Test
     public void canWordBeUsed() {
-//        Assert.assertTrue(Algo.canWordBeUsed("dupa", "adpu".toCharArray()));
-//        Assert.assertTrue(Algo.canWordBeUsed("afganistan", "aaafginnst".toCharArray()));
-//        Assert.assertTrue(Algo.canWordBeUsed("backdown", "abcdknow".toCharArray()));
-//
-//        Assert.assertFalse(Algo.canWordBeUsed("backdown", "abcdknabow".toCharArray()));
-//        Assert.assertFalse(Algo.canWordBeUsed("afganistan", "aaafginns".toCharArray()));
-//        Assert.assertFalse(Algo.canWordBeUsed("żydom", "domom".toCharArray()));
-//        Assert.assertFalse(Algo.canWordBeUsed("żydom", "dżdży".toCharArray()));
+        Assert.assertTrue(Algo.canWordBeUsed("dupa", "adpu"));
+        Assert.assertTrue(Algo.canWordBeUsed("afganistan", "aaafginnst"));
+        Assert.assertTrue(Algo.canWordBeUsed("backdown", "abcdknow"));
+
+        Assert.assertFalse(Algo.canWordBeUsed("backdown", "abcdkno"));
+        Assert.assertFalse(Algo.canWordBeUsed("afganistan", "aaafginns"));
+        Assert.assertFalse(Algo.canWordBeUsed("żydom", "domom"));
+        Assert.assertFalse(Algo.canWordBeUsed("żydom", "dżdży"));
     }
 
     @Test

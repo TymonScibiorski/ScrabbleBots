@@ -6,13 +6,12 @@ import java.util.*;
 
 public class Algo {
     public static ArrayList<String> output(int space, String lettersStr) throws IOException {
-        HashMap<Character, Integer> map = stringToHashMap(lettersStr);
 
-        return foundWords(space, map);
+        return foundWords(space, lettersStr);
     }
 
 
-    public static ArrayList<String> foundWords(int space, HashMap<Character, Integer> letters) throws IOException {
+    public static ArrayList<String> foundWords(int space, String letters) throws IOException {
         // This function searches wordlists and finds words that could be constructed with the given letters in the given space.
         ArrayList<String> words = new ArrayList<>();
 //        ArrayList<BufferedReader> readers = readersToBeSearched(space, letters);
@@ -31,23 +30,27 @@ public class Algo {
     }
 
 
+    public static boolean canWordBeUsed(String word, String playaLettersStr){
+        HashMap<Character, Integer> checkedWord = stringToHashMap(word);
+        HashMap<Character, Integer> playaLetters = stringToHashMap(playaLettersStr);
 
-    public static boolean canWordBeUsed(String word, HashMap<Character, Integer> letters){
-        HashMap<Character, Integer> wordLetter = stringToHashMap(word);
+        for (Map.Entry<Character, Integer> entry : checkedWord.entrySet()) {
+            int amountOfLetterInPlayaLetters = playaLetters.getOrDefault(entry.getKey(), 0);
 
-        for (Map.Entry<Character, Integer> entry : wordLetter.entrySet()) {
-            
+            if (amountOfLetterInPlayaLetters == 0 || amountOfLetterInPlayaLetters < checkedWord.get(entry.getKey())) {
+                return false;
+            }
+
         }
 
-        return false;
+        return true;
     }
 
 
-
-    public static ArrayList<Scanner> scannersToBeSearched(int space, HashMap<Character, Integer> letters) throws FileNotFoundException {
+    public static ArrayList<Scanner> scannersToBeSearched(int space, String letters) throws FileNotFoundException {
         // This function returns scanners of wordlists that will be searched through to find words that could be constructed with the given letters in the given space.
         ArrayList<Scanner> scannersToBeSearched = new ArrayList<>();
-        int constraints = constraints(space, letters);
+        int constraints = constraints(space, letters.length());
 
         for (int i = constraints; i > 1; i--) {
             String pathname = "src\\words" + i + ".txt";
@@ -57,23 +60,10 @@ public class Algo {
         return scannersToBeSearched;
     }
 
-    public static ArrayList<BufferedReader> readersToBeSearched(int space, HashMap<Character, Integer> letters) throws FileNotFoundException {
-        // This function returns scanners of wordlists that will be searched through to find words that could be constructed with the given letters in the given space.
-        ArrayList<BufferedReader> readersToBeSearched = new ArrayList<>();
-        int constraints = constraints(space, letters);
 
-        for (int i = constraints; i > 1; i--) {
-            String pathname = "src\\words" + i + ".txt";
-            readersToBeSearched.add(new BufferedReader(new FileReader(pathname)));
-        }
-
-        return readersToBeSearched;
-    }
-
-
-    public static int constraints(int space, HashMap<Character, Integer> letters) {
-        int constrains = letters.size();
-        if (space < letters.size()) {
+    public static int constraints(int space, int amountOfLetters) {
+        int constrains = amountOfLetters;
+        if (space < amountOfLetters) {
             constrains = space;
         }
 
@@ -90,4 +80,17 @@ public class Algo {
 
         return map;
     }
+
+//    public static ArrayList<BufferedReader> readersToBeSearched(int space, HashMap<Character, Integer> letters) throws FileNotFoundException {
+//        // This function returns scanners of wordlists that will be searched through to find words that could be constructed with the given letters in the given space.
+//        ArrayList<BufferedReader> readersToBeSearched = new ArrayList<>();
+//        int constraints = constraints(space, letters);
+//
+//        for (int i = constraints; i > 1; i--) {
+//            String pathname = "src\\words" + i + ".txt";
+//            readersToBeSearched.add(new BufferedReader(new FileReader(pathname)));
+//        }
+//
+//        return readersToBeSearched;
+//    }
 }
