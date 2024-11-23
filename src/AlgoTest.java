@@ -14,15 +14,21 @@ public class AlgoTest {
 
     @Test
     public void canWordBeUsed() {
-        Assert.assertTrue(Algo.canWordBeUsed("afganistan", "aaafginnst", "afgani", ""));
-        Assert.assertTrue(Algo.canWordBeUsed("afganistan", "aaafginnst", "", "stan"));
-        Assert.assertTrue(Algo.canWordBeUsed("afganistan", "aaafginnst", "", ""));
-        Assert.assertTrue(Algo.canWordBeUsed("backdown", "abcdknow", "", ""));
+        Assert.assertTrue(Algo.canWordBeUsed("afganistan", "aaafginnst", "afgani", "", 0));
+        Assert.assertTrue(Algo.canWordBeUsed("afganistan", "aaafginnst", "", "stan", 0));
+        Assert.assertTrue(Algo.canWordBeUsed("afganistan", "aaafginnst", "", "", 0));
+        Assert.assertTrue(Algo.canWordBeUsed("backdown", "abcdknow", "", "", 0));
+        Assert.assertTrue(Algo.canWordBeUsed("backdowne", "abcdknow", "", "", 1));
+        Assert.assertTrue(Algo.canWordBeUsed("backdowne", "abcdknow", "ba", "", 1));
+        Assert.assertTrue(Algo.canWordBeUsed("backdowne", "abcdknow", "", "ne", 1));
+        Assert.assertTrue(Algo.canWordBeUsed("backdowne", "abcdknow", "", "ne", 2));
+        Assert.assertTrue(Algo.canWordBeUsed("backdownez", "abcdknow", "", "nez", 2));
 
-        Assert.assertFalse(Algo.canWordBeUsed("backdown", "abcdkno", "", ""));
-        Assert.assertFalse(Algo.canWordBeUsed("afganistan", "aaafginns", "", ""));
-        Assert.assertFalse(Algo.canWordBeUsed("francuz", "zucnarf", "fa", ""));
-        Assert.assertFalse(Algo.canWordBeUsed("francuz", "zucnarf", "", "az"));
+
+        Assert.assertFalse(Algo.canWordBeUsed("backdown", "abcdkno", "", "", 0));
+        Assert.assertFalse(Algo.canWordBeUsed("afganistan", "aaafginns", "", "", 0));
+        Assert.assertFalse(Algo.canWordBeUsed("francuz", "zucnarf", "fa", "", 0));
+        Assert.assertFalse(Algo.canWordBeUsed("francuz", "zucnarf", "", "az", 0));
 
     }
 
