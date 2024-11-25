@@ -43,6 +43,10 @@ public class Algo {
         return true;
     }
 
+    public static boolean doesStringMatchGivenLetterPattern(String word, String pattern) {
+
+    }
+
 
     public static boolean doesBeginningAndEndMatch(String word, String beginsWith, String endsWith) {
         if (!beginsWith.isBlank() && !word.startsWith(beginsWith)) {

@@ -53,3 +53,29 @@ How to check if a word is made out of the given letters:
 7. If the amount from the 5th point is smaller than the amount from the 6th, return false. DONE
 6. Return true. DONE
  */
+
+/*
+Sometimes in scrabble tiles placed by players can have space in between.
+Placing words that use those letters is allowed and even crucial in a way, once a game gets complex enough.
+So sometimes the board looks like this:
+A
+_
+B
+_
+_
+C
+Where "_" are unused tiles.
+The next step for this code is to accept patterns that represent such cases and searching for words that would incorporate the letters from the board.
+That function wouldn't need to care if a found word would be made out of player's letters, because that would be assured by another function
+(which in takes in player's and board letters as input in no particular order).
+
+The pattern for the example described above would look like this:
+A1B2C
+With letters representing board letters and numbers representing space between them
+
+Just because a letter is provided doesn't mean that it HAS to be used.
+If a word was to be found that would incorporate some letters but not others, with which it would not interfere, the word should receive a pass.
+Illustrating with the example above, if a word that followed the pattern {.}*A.B{.}? were to be found, it would pass
+
+How to check if a string matches a given pattern:
+ */
