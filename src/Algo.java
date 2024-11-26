@@ -4,12 +4,12 @@ import java.io.IOException;
 import java.util.*;
 
 public class Algo {
-    public static ArrayList<String> output(int space, String lettersStr, String beginsWith, String endsIn, Integer amountOfBlankTiles) throws IOException {
-        return foundWords(space, lettersStr, beginsWith, endsIn, amountOfBlankTiles);
+    public static ArrayList<String> output(String lettersStr, String mustContain, String beginsWith, String endsIn, int space, Integer amountOfBlankTiles) throws IOException {
+        return foundWords(space, lettersStr, beginsWith, endsIn, mustContain, amountOfBlankTiles);
     }
 
 
-    public static ArrayList<String> foundWords(int space, String letters, String beginsWith, String endsWith, Integer amountOfBlankTiles) throws IOException {
+    public static ArrayList<String> foundWords(int space, String letters, String beginsWith, String endsWith, String mustContain, Integer amountOfBlankTiles) throws IOException {
         // This function searches wordlists and finds words that could be constructed with the given letters in the given space.
         ArrayList<String> words = new ArrayList<>();
 //        ArrayList<BufferedReader> readers = readersToBeSearched(space, letters);
@@ -19,7 +19,7 @@ public class Algo {
             while (scanner.hasNextLine()) {
                 String word = scanner.nextLine();
 
-                if (canWordBeUsed(word, letters, beginsWith, endsWith, amountOfBlankTiles)) {
+                if (canWordBeUsed(word, letters, beginsWith, endsWith, mustContain, amountOfBlankTiles)) {
                     words.add(word);
                 }
             }
@@ -28,7 +28,7 @@ public class Algo {
     }
 
 
-    public static boolean canWordBeUsed(String word, String playaLettersStr, String beginsWith, String endsWith, Integer amountOfBlankTiles) {
+    public static boolean canWordBeUsed(String word, String playaLettersStr, String beginsWith, String endsWith, String mustContain, Integer amountOfBlankTiles) {
         //This method checks if a given word can be constructed with the Player's letters and if it starts and ends with optionally specified strings
         HashMap<Character, Integer> checkedWord = stringToHashMap(word);
         HashMap<Character, Integer> playaLetters = stringToHashMap(playaLettersStr);
@@ -40,11 +40,26 @@ public class Algo {
         if (!doesBeginningAndEndMatch(word, beginsWith, endsWith)) {
             return false;
         }
+
+        if (!containsMustContain(word, mustContain)) {
+            return false;
+        }
+
         return true;
+
     }
 
-    public static boolean doesStringMatchGivenLetterPattern(String word, String usersPattern) {
-
+//    public static boolean doesStringMatchGivenLetterPattern(String word, String usersPattern) {
+//
+//    }
+    public static boolean containsMustContain(String word, String mustContain) {
+        if (mustContain == null) {
+            return true;
+        }
+        if (word.contains(mustContain)) {
+            return true;
+        }
+        return false;
     }
 
 
