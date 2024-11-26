@@ -64,13 +64,14 @@ B
 _
 _
 C
+D
 Where "_" are unused tiles.
 The next step for this code is to accept patterns that represent such cases and searching for words that would incorporate the letters from the board.
 That function wouldn't need to care if a found word would be made out of player's letters, because that would be assured by another function
 (which in takes in player's and board letters as input in no particular order).
 
 The pattern for the example described above would look like this:
-A1B2C
+A1B2C0D
 With letters representing board letters and numbers representing space between them
 
 Just because a letter is provided doesn't mean that it HAS to be used.
@@ -78,4 +79,8 @@ If a word was to be found that would incorporate some letters but not others, wi
 Illustrating with the example above, if a word that followed the pattern {.}*A.B{.}? were to be found, it would pass
 
 How to check if a string matches a given pattern:
+- For through letters of the checked word.
+- Check if the given letter matches one of the pattern's letters.
+- If none are found, return false
+- If one is found
  */
