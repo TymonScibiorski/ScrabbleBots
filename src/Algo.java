@@ -2,6 +2,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Algo {
     public static ArrayList<String> output(String lettersStr, String mustContain, String beginsWith, String endsIn, int space, Integer amountOfBlankTiles) throws IOException {
@@ -49,9 +50,40 @@ public class Algo {
 
     }
 
-//    public static boolean doesStringMatchGivenLetterPattern(String word, String usersPattern) {
-//
-//    }
+    public static boolean doesStringMatchGivenLetterPattern(String word, String usersPattern) {
+        char[] checkedWord = word.toCharArray();
+        char[] pattern = usersPattern.toCharArray();
+
+        for (int i = 0; i < checkedWord.length; i++) {
+            char checkedWordChar = checkedWord[i];
+
+            if (checkedWordChar != pattern[i]) {
+                continue;
+            }
+
+            int numberBeforePatternLetter = checkedWord[i-1] - '0';
+
+            if (checkedWordChar == pattern[1]) {
+                if(numberBeforePatternLetter < i){
+                    return false;
+                }
+                continue;
+            }
+
+            if (numberBeforePatternLetter == 0){
+                return false;
+            }
+
+            if (numberBeforePatternLetter < i){
+                return false;
+            }
+
+
+
+        }
+        return false;
+    }
+
     public static boolean containsMustContain(String word, String mustContain) {
         if (mustContain == null) {
             return true;
