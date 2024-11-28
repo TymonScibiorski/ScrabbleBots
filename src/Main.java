@@ -67,20 +67,38 @@ _
 _
 C
 D
+_
+_
 Where "_" are unused tiles.
 The next step for this code is to accept patterns that represent such cases and searching for words that would incorporate the letters from the board.
 That function wouldn't need to care if a found word would be made out of player's letters, because that would be assured by another function
 (which in takes in player's and board letters as input in no particular order).
 
 The pattern for the example described above would look like this:
-2A1B2C0D
+2A1B2C0D2
 With letters representing board letters and numbers representing space between them
 
 Just because a letter is provided doesn't mean that it HAS to be used.
 If a word was to be found that would incorporate some letters but not others, with which it would not interfere, the word should receive a pass.
 Illustrating with the example above, if a word that followed the pattern {.}*A.B{.}? were to be found, it would pass
 
-How to check if a string matches a given pattern:
+
+How to check if a string matches a given pattern, attempt two (I think that logic of the first attempt is botched):
+The pattern should actually look like __A_B__CD__
+- The pattern should be longer than or equal to the checked word, so if that condition isn't met, return false. DONE
+- If the pattern and the checked word are of the same length:
+    - True:
+        - Convert the checked word and the pattern the into a HashMap<Character, Character>. DONE
+        - For through all the letters in the checked word, DONE
+        - Check if their Values match Keys (Characters from the pattern) or "_" DONE
+            - False - return false; DONE
+        - All Characters from the word matched the pattern's letters or "_"s, return true; DONE
+    - False:
+
+
+
+
+How to check if a string matches a given pattern, fist attempt:
 - For through letters of the checked word. DONE
 - Check if the given letter matches one of the pattern's letters. DONE
     - If none are found, return false. DONE
@@ -93,12 +111,11 @@ How to check if a string matches a given pattern:
             -If N-1 is zero, then some letter from the given pattern should have preceded X, but it wasn't found, therefore it is not there and the word cannot be used: return false. For the example pattern: if a "D" is found, but "C" has not, the word can't be used DONE
             -If N-1 is more than zero, then check if less than N-1 letters precede X. For the example pattern: a word that has zero letters before "B" or one letter before "C", then it can be accepted
                 -If more than N-1 letters precede X, then it isn't one from the specified pattern:return false DONE
-                -If less than N-1 letters precede X, continue
+                -If less than N-1 letters precede X, do nothing DONE
     - (If) Compare the amount of letters succeeding X to the number succeeding X in the pattern, call it N1
         - If it's smaller: return true.
         - If it's equal: return false. For the example a word that ends in "A.B.." wouldn't contain the necessary "CD"
         - While it's bigger:
             - Jump ahead N1 amount of letters ahead and check if it matches the new X
             - Repeat the last If
-
  */

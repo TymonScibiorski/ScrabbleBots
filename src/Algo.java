@@ -50,12 +50,35 @@ public class Algo {
 
     }
 
+    public static boolean doesStringMatchGivenLetterPattern2(String word, String usersPattern){
+        if (usersPattern.length() < word.length()){
+            return false;
+        }
+
+        if (usersPattern.length() == word.length()){
+            HashMap<Character, Character> wordAndPatternMap = twoStringsOfEqualLengthToHashMap(word, usersPattern);
+
+            for (Map.Entry<Character, Character> entry : wordAndPatternMap.entrySet()) {
+                if (!(entry.getValue().equals(entry.getKey())  || entry.getValue().equals('_'))) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        return true;
+    }
+
+
+
     public static boolean doesStringMatchGivenLetterPattern(String word, String usersPattern) {
         char[] checkedWord = word.toCharArray();
         char[] pattern = usersPattern.toCharArray();
 
         for (int i = 0; i < checkedWord.length; i++) {
             char checkedWordChar = checkedWord[i];
+            int amountOfLettersCheckedFromWord = i;
 
             if (checkedWordChar != pattern[i]) {
                 continue;
@@ -63,25 +86,29 @@ public class Algo {
 
             int numberBeforePatternLetter = checkedWord[i-1] - '0';
 
-            if (checkedWordChar == pattern[1]) {
-                if(numberBeforePatternLetter < i){
+            if (checkedWordChar == pattern[1]) {// If the code encounters the first letter from the pattern in the word
+                if(numberBeforePatternLetter < amountOfLettersCheckedFromWord) { // and there have been more letters than the number before the letter, than the word's beginning is too long.
                     return false;
                 }
                 continue;
             }
 
-            if (numberBeforePatternLetter == 0){
+            if (numberBeforePatternLetter == 0){ // If [the number] before [found pattern letter] is zero than some other letter from the pattern should've already been found, and since this is NOT [the first letter form the pattern] then the word doesn't contain a crucial letter
                 return false;
             }
 
-            if (numberBeforePatternLetter < i){
+            if (numberBeforePatternLetter < amountOfLettersCheckedFromWord){ // If
                 return false;
             }
 
+            int numberAfterPatternLetter = checkedWord[i+1] - '0';
+            if (numberAfterPatternLetter > checkedWord.length-i){ // If there's fewer letters left in the word than the amount of letters permitted after X, then it doesn't "touch" the next letter, so it should be permitted
+                return true;
+            }
 
 
         }
-        return false;
+        return true;
     }
 
     public static boolean containsMustContain(String word, String mustContain) {
@@ -153,6 +180,19 @@ public class Algo {
         for(char c : word.toCharArray()){
             int occurences = map.getOrDefault(c, 0) + 1;
             map.put(c, occurences);
+        }
+
+        return map;
+    }
+
+    private static HashMap<Character, Character> twoStringsOfEqualLengthToHashMap(String word1, String word2) {
+        HashMap<Character, Character> map = new HashMap<>();
+
+        char[] word1Array = word1.toCharArray();
+        char[] word2Array = word2.toCharArray();
+
+        for (int i = 0; i < word1Array.length; i++) {
+            map.put(word1Array[i], word2Array[i]);
         }
 
         return map;
