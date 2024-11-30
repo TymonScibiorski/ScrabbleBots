@@ -37,7 +37,7 @@ public class Algo {
         HashMap<Character, Integer> checkedWord = stringToHashMap(word);
         HashMap<Character, Integer> playaLetters = stringToHashMap(playaLettersStr);
 
-            if (!doLettersMatch(playaLetters, checkedWord, amountOfBlankTiles)) {
+        if (!doLettersMatch(playaLetters, checkedWord, amountOfBlankTiles)) {
             return false;
         }
 
@@ -70,10 +70,14 @@ public class Algo {
             return true;
         }
 
+
+
         return true;
     }
 
-
+    public static boolean doesCheckedWordContainAtLeastOneLetterFromPattern(String word, String usersPattern){
+        return usersPattern.replace("_", "").matches("[" + word +"]");
+    }
 
     public static boolean doesStringMatchGivenLetterPattern(String word, String usersPattern) {
         char[] checkedWord = word.toCharArray();

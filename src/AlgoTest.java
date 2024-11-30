@@ -20,6 +20,14 @@ public class AlgoTest {
     }
 
     @Test
+    public void testDoesCheckedWordContainAtLeastOneLetterFromPattern(){
+        Assert.assertTrue(Algo.doesCheckedWordContainAtLeastOneLetterFromPattern("zupa", "z___"));
+        Assert.assertTrue(Algo.doesCheckedWordContainAtLeastOneLetterFromPattern("zupa", "_u_"));
+
+        Assert.assertFalse(Algo.doesCheckedWordContainAtLeastOneLetterFromPattern("zupa", "jrqwtyi"));
+    }
+
+    @Test
     public void canWordBeUsed() {
         Assert.assertTrue(Algo.canWordBeUsed("afganistan", "aaafginnst", "afgani", "", "",0));
         Assert.assertTrue(Algo.canWordBeUsed("afganistan", "aaafginnst", "", "stan", "",0));

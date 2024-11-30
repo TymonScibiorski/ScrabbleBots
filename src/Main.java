@@ -86,6 +86,7 @@ Illustrating with the example above, if a word that followed the pattern {.}*A.B
 How to check if a string matches a given pattern, attempt two (I think that logic of the first attempt is botched):
 The pattern should actually look like __A_B__CD__
 - The pattern should be longer than or equal to the checked word, so if that condition isn't met, return false. DONE
+- If at least one of the letters from the pattern (stripped of off "_") isn't in the word, the word cannot be used
 - If the pattern and the checked word are of the same length:
     - True:
         - Convert the checked word and the pattern the into a HashMap<Character, Character>. DONE
@@ -94,6 +95,7 @@ The pattern should actually look like __A_B__CD__
             - False - return false; DONE
         - All Characters from the word matched the pattern's letters or "_"s, return true; DONE
     - False:
+        - Find the first letter from the pattern that matches
 
 
 
