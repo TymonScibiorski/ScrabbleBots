@@ -1,9 +1,6 @@
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.io.FileNotFoundException;
-
-
 
 public class AlgoTest {
 
@@ -13,7 +10,7 @@ public class AlgoTest {
     }
 
     @Test
-    public void testDoesStringMatchGivenLetterPattern2(){
+    public void testDoesStringMatchGivenLetterPattern(){
         Assert.assertTrue(Algo.doesStringMatchGivenLetterPattern("zupa", "_up_"));
         Assert.assertTrue(Algo.doesStringMatchGivenLetterPattern("patoloigach", "__t_l__ga__"));
         Assert.assertTrue(Algo.doesStringMatchGivenLetterPattern("tol", "__t_l__ga__"));
@@ -22,16 +19,40 @@ public class AlgoTest {
         Assert.assertFalse(Algo.doesStringMatchGivenLetterPattern("lizg", "__t_l__ga__"));
         Assert.assertFalse(Algo.doesStringMatchGivenLetterPattern("ślizg", "__t_l__ga__"));
         Assert.assertFalse(Algo.doesStringMatchGivenLetterPattern("zupa", "_ur_"));
+        Assert.assertFalse(Algo.checkedWordContainsAtLeastOneLetterFromPattern("zupa", "jrqwtyi"));
     }
 
     @Test
-    public void testDoesCheckedWordContainAtLeastOneLetterFromPattern(){
-        Assert.assertTrue(Algo.checkedWordContainsAtLeastOneLetterFromPattern("zupa", "z___"));
-        Assert.assertTrue(Algo.checkedWordContainsAtLeastOneLetterFromPattern("zupa", "_up_"));
-        Assert.assertTrue(Algo.checkedWordContainsAtLeastOneLetterFromPattern("zupa", "_u__"));
+    public void testDoLettersMatch(){
+        Assert.assertTrue(Algo.doLettersMatch("aaafginnst", "afganistan", 0));
+        Assert.assertTrue(Algo.doLettersMatch("backdown", "abcdknow",0));
+        Assert.assertTrue(Algo.doLettersMatch("abcd", "abcd", 0));
+        Assert.assertTrue(Algo.doLettersMatch("yzny", "żyzny", 1));
 
+        Assert.assertFalse(Algo.doLettersMatch("yzny", "żyzny", 0));
+        Assert.assertFalse(Algo.doLettersMatch("aafginnst", "afganistan", 0));
+        Assert.assertFalse(Algo.doLettersMatch("backdow", "abcdknow",0));
+        Assert.assertFalse(Algo.doLettersMatch("addd", "abcd", 0));
+    }
 
-        Assert.assertFalse(Algo.checkedWordContainsAtLeastOneLetterFromPattern("zupa", "jrqwtyi"));
+    @Test
+    public void testDoesBeginningAnndEndMatch(){
+        Assert.assertTrue(Algo.doesBeginningAndEndMatch("afganistan", "afgani",""));
+        Assert.assertTrue(Algo.doesBeginningAndEndMatch("afganistan", "","stan"));
+
+        Assert.assertFalse(Algo.doesBeginningAndEndMatch("afganistan", "","tsan"));
+        Assert.assertFalse(Algo.doesBeginningAndEndMatch("afganistan", "fag",""));
+    }
+
+    @Test
+    public void testContainsMustContain(){
+        Assert.assertTrue(Algo.containsMustContain("zupa", "z"));
+        Assert.assertTrue(Algo.containsMustContain("zupa", "up"));
+        Assert.assertTrue(Algo.containsMustContain("zupa", "zu"));
+
+        Assert.assertFalse(Algo.containsMustContain("zupa", "uz"));
+        Assert.assertFalse(Algo.containsMustContain("zupa", "ż"));
+        Assert.assertFalse(Algo.containsMustContain("zupa", "pazu"));
     }
 
     @Test

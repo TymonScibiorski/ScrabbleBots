@@ -32,10 +32,7 @@ public class Algo {
 
     public static boolean canWordBeUsed(String word, String playaLettersStr, String pattern, String beginsWith, String endsWith, String mustContain, Integer amountOfBlankTiles) {
         //This method checks if a given word can be constructed with the Player's letters and if it starts and ends with optionally specified strings
-        HashMap<Character, Integer> checkedWord = stringToHashMap(word);
-        HashMap<Character, Integer> playaLetters = stringToHashMap(playaLettersStr);
-
-        if (!doLettersMatch(playaLetters, checkedWord, amountOfBlankTiles)) {
+        if (!doLettersMatch(word, playaLettersStr, amountOfBlankTiles)) {
             return false;
         }
 
@@ -139,13 +136,17 @@ public class Algo {
         return true;
     }
 
-    public static boolean doLettersMatch(HashMap<Character, Integer> playaLetters, HashMap<Character, Integer> checkedWord, Integer amountOfBlankTiles) {
+    public static boolean doLettersMatch(String playaLettersStr, String word, Integer amountOfBlankTiles) {
+        HashMap<Character, Integer> checkedWord = stringToHashMap(word);
+        HashMap<Character, Integer> playaLetters = stringToHashMap(playaLettersStr);
+
         // Foring through letters in the checked word
         for (Map.Entry<Character, Integer> entry : checkedWord.entrySet()) {
-            int amountOfTheCheckedLetterInPlayaLetters = playaLetters.getOrDefault(entry.getKey(), 0);
+            int amountOfTheCheckedLetterInPlayaLetters = playaLetters.getOrDefault(entry.getKey(), 0); //Checks how many times a given letter is in PlayaLetters
 
-            if ((amountOfTheCheckedLetterInPlayaLetters < checkedWord.get(entry.getKey()))) {
-                if (amountOfTheCheckedLetterInPlayaLetters == 0 && checkedWord.get(entry.getKey()) <= amountOfBlankTiles) {
+            if ((amountOfTheCheckedLetterInPlayaLetters < checkedWord.get(entry.getKey()))) { // If there isn't enough letters in playaLetters to construct the given word, it will return a false
+
+                if (amountOfTheCheckedLetterInPlayaLetters == 0 && checkedWord.get(entry.getKey()) <= amountOfBlankTiles) { //Unless there's enough blanks. If there is, other letters will be checked
                     amountOfBlankTiles -= checkedWord.get(entry.getKey()) - amountOfTheCheckedLetterInPlayaLetters;
                     continue;
                 }
