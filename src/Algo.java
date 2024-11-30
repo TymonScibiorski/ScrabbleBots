@@ -2,18 +2,16 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Algo {
     public static ArrayList<String> output(String lettersStr, String pattern, String mustContain, String beginsWith, String endsIn, int space, Integer amountOfBlankTiles) throws IOException {
         lettersStr += mustContain + beginsWith + endsIn + pattern.replace("_", "");
 
-        return foundWords(space, lettersStr, beginsWith, endsIn, mustContain, amountOfBlankTiles);
+        return foundWords(space, lettersStr, pattern, beginsWith, endsIn, mustContain, amountOfBlankTiles);
     }
 
 
-    public static ArrayList<String> foundWords(int space, String letters, String beginsWith, String endsWith, String mustContain, Integer amountOfBlankTiles) throws IOException {
+    public static ArrayList<String> foundWords(int space, String letters, String pattern, String beginsWith, String endsWith, String mustContain, Integer amountOfBlankTiles) throws IOException {
         // This function searches wordlists and finds words that could be constructed with the given letters in the given space.
         ArrayList<String> words = new ArrayList<>();
 //        ArrayList<BufferedReader> readers = readersToBeSearched(space, letters);
@@ -23,7 +21,7 @@ public class Algo {
             while (scanner.hasNextLine()) {
                 String word = scanner.nextLine();
 
-                if (canWordBeUsed(word, letters, beginsWith, endsWith, mustContain, amountOfBlankTiles)) {
+                if (canWordBeUsed(word, letters, pattern, beginsWith, endsWith, mustContain, amountOfBlankTiles)) {
                     words.add(word);
                 }
             }
@@ -32,7 +30,7 @@ public class Algo {
     }
 
 
-    public static boolean canWordBeUsed(String word, String playaLettersStr, String beginsWith, String endsWith, String mustContain, Integer amountOfBlankTiles) {
+    public static boolean canWordBeUsed(String word, String playaLettersStr, String pattern, String beginsWith, String endsWith, String mustContain, Integer amountOfBlankTiles) {
         //This method checks if a given word can be constructed with the Player's letters and if it starts and ends with optionally specified strings
         HashMap<Character, Integer> checkedWord = stringToHashMap(word);
         HashMap<Character, Integer> playaLetters = stringToHashMap(playaLettersStr);
@@ -49,74 +47,75 @@ public class Algo {
             return false;
         }
 
-        return true;
-
-    }
-
-    public static boolean doesStringMatchGivenLetterPattern2(String word, String usersPattern){
-        if (usersPattern.length() < word.length()){
+        if (!doesStringMatchGivenLetterPattern(word, pattern)){
             return false;
         }
 
-        if (usersPattern.length() == word.length()){
-            HashMap<Character, Character> wordAndPatternMap = twoStringsOfEqualLengthToHashMap(word, usersPattern);
+        return true;
 
-            for (Map.Entry<Character, Character> entry : wordAndPatternMap.entrySet()) {
-                if (!(entry.getValue().equals(entry.getKey())  || entry.getValue().equals('_'))) {
-                    return false;
-                }
-            }
+    }
 
-            return true;
+    public static boolean doesStringMatchGivenLetterPattern(String word, String usersPattern){
+        if (usersPattern.length() < word.length()){
+            return false;
+        }
+        if (!checkedWordContainsAtLeastOneLetterFromPattern(word, usersPattern)){
+            return false;
         }
 
+        if (usersPattern.length() == word.length()) {
+            return doesCheckedWordMatchPatternOfSameLength(word, usersPattern);
+        }
 
+        char[] patternChar = usersPattern.toCharArray();
+
+        for (int i = 0; i < patternChar.length-word.length()-1; i++) {
+            char currentChar = patternChar[i];
+            char charAfterWord = patternChar[i+word.length()+1];
+            if(isLetter(currentChar)) {
+                continue;
+            }
+            if(isLetter(charAfterWord)){
+                continue;
+            }
+
+            String fragmentOfPattern = new String(Arrays.copyOfRange(patternChar, i+1, i+word.length()+1));
+            if (doesCheckedWordMatchPatternOfSameLength(word, fragmentOfPattern)) {
+                return true;
+
+            }
+        }
+
+        return false;
+    }
+
+    public static boolean isLetter(char letter) {
+        return Character.isLetter(letter);
+    }
+
+    public static boolean doesCheckedWordMatchPatternOfSameLength(String word, String usersPattern){
+        HashMap<Character, Character> wordAndPatternMap = twoStringsOfEqualLengthToHashMap(word, usersPattern);
+
+        for (Map.Entry<Character, Character> entry : wordAndPatternMap.entrySet()) {
+            if (!(entry.getValue().equals(entry.getKey())  || entry.getValue().equals('_'))) {
+                return false;
+            }
+        }
 
         return true;
     }
 
-    public static boolean doesCheckedWordContainAtLeastOneLetterFromPattern(String word, String usersPattern){
-        return usersPattern.replace("_", "").matches("[" + word +"]");
-    }
-
-    public static boolean doesStringMatchGivenLetterPattern(String word, String usersPattern) {
-        char[] checkedWord = word.toCharArray();
-        char[] pattern = usersPattern.toCharArray();
-
-        for (int i = 0; i < checkedWord.length; i++) {
-            char checkedWordChar = checkedWord[i];
-            int amountOfLettersCheckedFromWord = i;
-
-            if (checkedWordChar != pattern[i]) {
-                continue;
-            }
-
-            int numberBeforePatternLetter = checkedWord[i-1] - '0';
-
-            if (checkedWordChar == pattern[1]) {// If the code encounters the first letter from the pattern in the word
-                if(numberBeforePatternLetter < amountOfLettersCheckedFromWord) { // and there have been more letters than the number before the letter, than the word's beginning is too long.
-                    return false;
-                }
-                continue;
-            }
-
-            if (numberBeforePatternLetter == 0){ // If [the number] before [found pattern letter] is zero than some other letter from the pattern should've already been found, and since this is NOT [the first letter form the pattern] then the word doesn't contain a crucial letter
-                return false;
-            }
-
-            if (numberBeforePatternLetter < amountOfLettersCheckedFromWord){ // If
-                return false;
-            }
-
-            int numberAfterPatternLetter = checkedWord[i+1] - '0';
-            if (numberAfterPatternLetter > checkedWord.length-i){ // If there's fewer letters left in the word than the amount of letters permitted after X, then it doesn't "touch" the next letter, so it should be permitted
+    public static boolean checkedWordContainsAtLeastOneLetterFromPattern(String word, String usersPattern){
+        char[] usersPatternArray = usersPattern.replace("_", "").toCharArray();
+        for (char c : usersPatternArray) {
+            if(word.contains(String.valueOf(c))){
                 return true;
             }
-
-
         }
-        return true;
+
+        return false;
     }
+
 
     public static boolean containsMustContain(String word, String mustContain) {
         if (mustContain == null) {
