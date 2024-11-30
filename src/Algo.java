@@ -44,7 +44,7 @@ public class Algo {
             return false;
         }
 
-        if (!doesStringMatchGivenLetterPattern(word, pattern)){
+        if (!pattern.isBlank() && !doesStringMatchGivenLetterPattern(word, pattern)){
             return false;
         }
 
@@ -53,6 +53,7 @@ public class Algo {
     }
 
     public static boolean doesStringMatchGivenLetterPattern(String word, String usersPattern){
+        // Sometimes dysfunctions, because HashMaps are used, and if a letter occurs more than once, a previous value is overwritten.
         if (usersPattern.length() < word.length()){
             return false;
         }
@@ -77,14 +78,19 @@ public class Algo {
             }
 
             String fragmentOfPattern = new String(Arrays.copyOfRange(patternChar, i+1, i+word.length()+1));
+            if(fragmentOfPattern.matches("^_+$")){ // If the new-found pattern doesn't contain any letters from the original pattern, then it cannot be used
+                continue;
+            }
+
             if (doesCheckedWordMatchPatternOfSameLength(word, fragmentOfPattern)) {
                 return true;
-
             }
         }
 
         return false;
     }
+
+//    public static boolean foundPatternIsntJust_()
 
     public static boolean isLetter(char letter) {
         return Character.isLetter(letter);
@@ -100,6 +106,16 @@ public class Algo {
         }
 
         return true;
+    }
+
+    public static ArrayList<String> somethingOfAMap(String word, String usersPattern){
+        ArrayList<String> out = new ArrayList<>();
+
+        for (int i = 0; i < word.length(); i++) {
+            out.add(new String(String.valueOf(word.charAt(i)+usersPattern.charAt(i))));
+        }
+
+        return out;
     }
 
     public static boolean checkedWordContainsAtLeastOneLetterFromPattern(String word, String usersPattern){
@@ -136,7 +152,7 @@ public class Algo {
         return true;
     }
 
-    public static boolean doLettersMatch(String playaLettersStr, String word, Integer amountOfBlankTiles) {
+    public static boolean doLettersMatch(String word, String playaLettersStr, Integer amountOfBlankTiles) {
         HashMap<Character, Integer> checkedWord = stringToHashMap(word);
         HashMap<Character, Integer> playaLetters = stringToHashMap(playaLettersStr);
 
@@ -192,7 +208,7 @@ public class Algo {
         return map;
     }
 
-    private static HashMap<Character, Character> twoStringsOfEqualLengthToHashMap(String word1, String word2) {
+    public static HashMap<Character, Character> twoStringsOfEqualLengthToHashMap(String word1, String word2) {
         HashMap<Character, Character> map = new HashMap<>();
 
         char[] word1Array = word1.toCharArray();

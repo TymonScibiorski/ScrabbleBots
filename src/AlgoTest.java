@@ -19,7 +19,13 @@ public class AlgoTest {
         Assert.assertFalse(Algo.doesStringMatchGivenLetterPattern("lizg", "__t_l__ga__"));
         Assert.assertFalse(Algo.doesStringMatchGivenLetterPattern("ślizg", "__t_l__ga__"));
         Assert.assertFalse(Algo.doesStringMatchGivenLetterPattern("zupa", "_ur_"));
-        Assert.assertFalse(Algo.checkedWordContainsAtLeastOneLetterFromPattern("zupa", "jrqwtyi"));
+        Assert.assertFalse(Algo.doesStringMatchGivenLetterPattern("zupa", "jrqwtyi"));
+
+        Assert.assertFalse(Algo.doesStringMatchGivenLetterPattern("kocioł", "____o_y_______"));
+        Assert.assertFalse(Algo.doesStringMatchGivenLetterPattern("zorz", "____o_y_ł_____"));
+//        Assert.assertFalse(Algo.doesStringMatchGivenLetterPattern("okociły", "____o_y_______"));
+
+
     }
 
     @Test
@@ -28,6 +34,8 @@ public class AlgoTest {
         Assert.assertTrue(Algo.doLettersMatch("backdown", "abcdknow",0));
         Assert.assertTrue(Algo.doLettersMatch("abcd", "abcd", 0));
         Assert.assertTrue(Algo.doLettersMatch("yzny", "żyzny", 1));
+
+        Assert.assertTrue(Algo.doLettersMatch("laełfł", "fale", 1));
 
         Assert.assertFalse(Algo.doLettersMatch("yzny", "żyzny", 0));
         Assert.assertFalse(Algo.doLettersMatch("aafginnst", "afganistan", 0));
@@ -57,21 +65,7 @@ public class AlgoTest {
 
     @Test
     public void canWordBeUsed() {
-//        Assert.assertTrue(Algo.canWordBeUsed("afganistan", "aaafginnst", "afgani", "", "","", 0));
-//        Assert.assertTrue(Algo.canWordBeUsed("afganistan", "aaafginnst", "", "stan", "","", 0));
-//        Assert.assertTrue(Algo.canWordBeUsed("afganistan", "aaafginnst", "", "", "","", 0));
-//        Assert.assertTrue(Algo.canWordBeUsed("backdown", "abcdknow", "", "", "","", 0));
-//        Assert.assertTrue(Algo.canWordBeUsed("backdowne", "abcdknow", "", "", "","", 1));
-//        Assert.assertTrue(Algo.canWordBeUsed("backdowne", "abcdknow", "ba", "", "","", 1));
-//        Assert.assertTrue(Algo.canWordBeUsed("backdowne", "abcdknow", "", "ne", "","", 1));
-//        Assert.assertTrue(Algo.canWordBeUsed("backdowne", "abcdknow", "", "ne", "","", 2));
-//        Assert.assertTrue(Algo.canWordBeUsed("backdownez", "abcdknow", "", "nez", "","", 2));
-//
-//
-//        Assert.assertFalse(Algo.canWordBeUsed("backdown", "abcdkno", "", "", "","", 0));
-//        Assert.assertFalse(Algo.canWordBeUsed("afganistan", "aaafginns", "", "", "","", 0));
-//        Assert.assertFalse(Algo.canWordBeUsed("francuz", "zucnarf", "fa", "", "","", 0));
-//        Assert.assertFalse(Algo.canWordBeUsed("francuz", "zucnarf", "", "az", "","", 0));
+        Assert.assertTrue(Algo.canWordBeUsed("fale", "laełfł", "", "", "", "", 1));
 
     }
     }
