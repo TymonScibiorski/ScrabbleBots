@@ -23,7 +23,9 @@ public class AlgoTest {
 
         Assert.assertFalse(Algo.doesStringMatchGivenLetterPattern("kocioł", "____o_y_______"));
         Assert.assertFalse(Algo.doesStringMatchGivenLetterPattern("zorz", "____o_y_ł_____"));
-//        Assert.assertFalse(Algo.doesStringMatchGivenLetterPattern("okociły", "____o_y_______"));
+        Assert.assertFalse(Algo.doesStringMatchGivenLetterPattern("okociły", "____o_y_______"));
+        Assert.assertFalse(Algo.doesStringMatchGivenLetterPattern("", "____d__z_______"));
+
 
 
     }

@@ -97,12 +97,18 @@ public class Algo {
     }
 
     public static boolean doesCheckedWordMatchPatternOfSameLength(String word, String usersPattern){
-        HashMap<Character, Character> wordAndPatternMap = twoStringsOfEqualLengthToHashMap(word, usersPattern);
-
-        for (Map.Entry<Character, Character> entry : wordAndPatternMap.entrySet()) {
-            if (!(entry.getValue().equals(entry.getKey())  || entry.getValue().equals('_'))) {
+//        HashMap<Character, Character> wordAndPatternMap = twoStringsOfEqualLengthToHashMap(word, usersPattern);
+//
+//        for (Map.Entry<Character, Character> entry : wordAndPatternMap.entrySet()) {
+//            if (!(entry.getValue().equals(entry.getKey())  || entry.getValue().equals('_'))) {
+//                return false;
+//            }
+//        }
+        for (int i = 0; i < word.length(); i++) {
+            if (!(word.charAt(i) == usersPattern.charAt(i) || usersPattern.charAt(i) == '_')) {
                 return false;
             }
+
         }
 
         return true;
