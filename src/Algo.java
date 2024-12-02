@@ -194,7 +194,12 @@ public class Algo {
 
 
     public static int constraints(int space, int amountOfLetters, int patternLength) {
-        int[] numbers = {space, amountOfLetters, patternLength};
+        int[] numbers = {space, amountOfLetters};
+
+        if (patternLength != 0){
+            numbers = new int[]{space, amountOfLetters, patternLength};
+        }
+
         Arrays.sort(numbers);
 
         return numbers[0];

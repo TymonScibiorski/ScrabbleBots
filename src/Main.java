@@ -6,7 +6,7 @@ public class Main {
         long startTime = System.currentTimeMillis();
 
         try{
-            ArrayList<String> wordsForOutput = Algo.output("c", "", "", "", "", 15, 0);
+            ArrayList<String> wordsForOutput = Algo.output("zupa", "", "", "", "", 15, 0);
             for (String word : wordsForOutput){
 
                 System.out.println(word);
