@@ -15,7 +15,7 @@ public class Algo {
         // This function searches wordlists and finds words that could be constructed with the given letters in the given space.
         ArrayList<String> words = new ArrayList<>();
 //        ArrayList<BufferedReader> readers = readersToBeSearched(space, letters);
-        ArrayList<Scanner> scanners = scannersToBeSearched(space, letters, amountOfBlankTiles);
+        ArrayList<Scanner> scanners = scannersToBeSearched(constraints(space, letters.length(), pattern.length()), amountOfBlankTiles);
 
         for (Scanner scanner : scanners) {
             while (scanner.hasNextLine()) {
@@ -180,10 +180,9 @@ public class Algo {
     }
 
 
-    public static ArrayList<Scanner> scannersToBeSearched(int space, String letters, Integer amountOfBlankTiles) throws FileNotFoundException {
+    public static ArrayList<Scanner> scannersToBeSearched(int constraints, Integer amountOfBlankTiles) throws FileNotFoundException {
         // This function returns scanners of wordlists that will be searched through to find words that could be constructed with the given letters in the given space.
         ArrayList<Scanner> scannersToBeSearched = new ArrayList<>();
-        int constraints = constraints(space, letters.length());
 
         for (int i = 2; i <= constraints+amountOfBlankTiles; i++) {
             String pathname = "src\\words" + i + ".txt";
@@ -194,13 +193,11 @@ public class Algo {
     }
 
 
-    public static int constraints(int space, int amountOfLetters) {
-        int constrains = amountOfLetters;
-        if (space < amountOfLetters) {
-            constrains = space;
-        }
+    public static int constraints(int space, int amountOfLetters, int patternLength) {
+        int[] numbers = {space, amountOfLetters, patternLength};
+        Arrays.sort(numbers);
 
-        return constrains;
+        return numbers[0];
     }
 
     private static HashMap<Character, Integer> stringToHashMap(String word) {

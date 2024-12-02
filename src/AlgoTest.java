@@ -24,7 +24,12 @@ public class AlgoTest {
         Assert.assertFalse(Algo.doesStringMatchGivenLetterPattern("kocioł", "____o_y_______"));
         Assert.assertFalse(Algo.doesStringMatchGivenLetterPattern("zorz", "____o_y_ł_____"));
         Assert.assertFalse(Algo.doesStringMatchGivenLetterPattern("okociły", "____o_y_______"));
-        Assert.assertFalse(Algo.doesStringMatchGivenLetterPattern("", "____d__z_______"));
+
+        Assert.assertFalse(Algo.doesStringMatchGivenLetterPattern("zdanko", "____d__z_______"));
+        Assert.assertTrue(Algo.doesStringMatchGivenLetterPattern("amen", "_m___nić"));
+        Assert.assertTrue(Algo.doesStringMatchGivenLetterPattern("fasad", "____d"));
+        Assert.assertTrue(Algo.doesStringMatchGivenLetterPattern("win", "___n"));
+
 
 
 
@@ -52,6 +57,13 @@ public class AlgoTest {
 
         Assert.assertFalse(Algo.doesBeginningAndEndMatch("afganistan", "","tsan"));
         Assert.assertFalse(Algo.doesBeginningAndEndMatch("afganistan", "fag",""));
+    }
+
+    @Test
+    public void testConstrains(){
+        Assert.assertEquals(1, Algo.constraints(1,2,3));
+        Assert.assertEquals(2, Algo.constraints(2,3,4));
+        Assert.assertEquals(0, Algo.constraints(0,16,4));
     }
 
     @Test
