@@ -52,6 +52,15 @@ public class Algo {
 
     }
 
+//    public static boolean doesStringMatchGivenLetterPattern3(String word, String usersPattern){
+//        for (int i = 0; i < usersPattern.length() - word.length(); i++) {
+//
+//
+//        }
+//
+//        return true;
+//    }
+
     public static boolean doesStringMatchGivenLetterPattern(String word, String usersPattern){
         // Sometimes dysfunctions, because HashMaps are used, and if a letter occurs more than once, a previous value is overwritten.
         if (usersPattern.length() < word.length()){
