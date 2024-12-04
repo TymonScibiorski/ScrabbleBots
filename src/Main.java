@@ -6,7 +6,7 @@ public class Main {
         long startTime = System.currentTimeMillis();
 
         try{
-            ArrayList<String> wordsForOutput = Algo.output("zupa", "", "", "", "", 15, 0);
+            ArrayList<String> wordsForOutput = Algo.output("zz", "a", "", "", "", 15, 0);
             for (String word : wordsForOutput){
 
                 System.out.println(word);
@@ -82,6 +82,17 @@ Just because a letter is provided doesn't mean that it HAS to be used.
 If a word was to be found that would incorporate some letters but not others, with which it would not interfere, the word should receive a pass.
 Illustrating with the example above, if a word that followed the pattern {.}*A.B{.}? were to be found, it would pass
 
+How to check if a string matches a given pattern, attempt three:
+The first attempt was never finished and the approach from the second attempt doesn't work very well, at least partially.
+The logic for a pattern that's the same length as the word seems to work alright, so it's going to be reused in the third attempt.
+So, how to check if the length differs? Here's how:
+- set up a fori, which has a limit of (pattern length-word length)
+- provide the "pattern length matches word length" function with a segment of the pattern, from i to (i+word length).
+- if one is true, return true.
+
+One more problem needs to be solved. Because playerLetters gets supplied with letters from pattern, sometimes words pass when they shouldn't.
+These false positives contain letters from the pattern, even when the word doesn't make contact with them.
+This happens because the function "output" adds all letters from the pattern to playerLetters, even though some letters don't end up being used.
 
 How to check if a string matches a given pattern, attempt two:
 The pattern should actually look like __A_B__CD__

@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.*;
 
 public class Algo {
-    public static ArrayList<String> output(String lettersStr, String pattern, String mustContain, String beginsWith, String endsIn, int space, Integer amountOfBlankTiles) throws IOException {
+    public static ArrayList<String> output(String lettersStr,  String mustContain, String pattern,String beginsWith, String endsIn, int space, Integer amountOfBlankTiles) throws IOException {
         lettersStr += mustContain + beginsWith + endsIn + pattern.replace("_", "");
 
         return foundWords(space, lettersStr, pattern, beginsWith, endsIn, mustContain, amountOfBlankTiles);

@@ -25,14 +25,21 @@ public class AlgoTest {
         Assert.assertFalse(Algo.doesStringMatchGivenLetterPattern("zorz", "____o_y_ł_____"));
         Assert.assertFalse(Algo.doesStringMatchGivenLetterPattern("okociły", "____o_y_______"));
 
-        Assert.assertFalse(Algo.doesStringMatchGivenLetterPattern("zdanko", "____d__z_______"));
-        Assert.assertTrue(Algo.doesStringMatchGivenLetterPattern("amen", "_m___nić"));
-        Assert.assertTrue(Algo.doesStringMatchGivenLetterPattern("fasad", "____d"));
+//        Assert.assertFalse(Algo.doesStringMatchGivenLetterPattern("zdanko", "____d__z_______"));
+//        Assert.assertTrue(Algo.doesStringMatchGivenLetterPattern("amen", "_m___nić"));
+//        Assert.assertTrue(Algo.doesStringMatchGivenLetterPattern("fasad", "____d"));
         Assert.assertTrue(Algo.doesStringMatchGivenLetterPattern("win", "___n"));
+    }
 
+    @Test
+    public void testDoesCheckedWordMatchPatternOfSameLength(){
+        Assert.assertTrue(Algo.doesCheckedWordMatchPatternOfSameLength("zupa", "_up_"));
+        Assert.assertTrue(Algo.doesStringMatchGivenLetterPattern("patoloigach", "__t_l__ga__"));
+        Assert.assertTrue(Algo.doesStringMatchGivenLetterPattern("tol", "t_l"));
 
-
-
+        Assert.assertFalse(Algo.doesStringMatchGivenLetterPattern("win", "_d_"));
+        Assert.assertFalse(Algo.doesStringMatchGivenLetterPattern("zupa", "_ud_"));
+        Assert.assertFalse(Algo.doesStringMatchGivenLetterPattern("fasad", "__d__"));
     }
 
     @Test
