@@ -44,104 +44,12 @@ public class Algo {
             return false;
         }
 
-        if (!pattern.isBlank() && !doesStringMatchGivenLetterPattern(word, pattern)){
+        if (!pattern.isBlank() && !patternMatcher.doesStringMatchPattern(word, pattern)){
             return false;
         }
 
         return true;
 
-    }
-
-//    public static boolean doesStringMatchGivenLetterPattern3(String word, String usersPattern){
-//        for (int i = 0; i < usersPattern.length() - word.length(); i++) {
-//
-//
-//        }
-//
-//        return true;
-//    }
-
-    public static boolean doesStringMatchGivenLetterPattern(String word, String usersPattern){
-        // Sometimes dysfunctions, because HashMaps are used, and if a letter occurs more than once, a previous value is overwritten.
-        if (usersPattern.length() < word.length()){
-            return false;
-        }
-        if (!checkedWordContainsAtLeastOneLetterFromPattern(word, usersPattern)){
-            return false;
-        }
-
-        if (usersPattern.length() == word.length()) {
-            return doesCheckedWordMatchPatternOfSameLength(word, usersPattern);
-        }
-
-        char[] patternChar = usersPattern.toCharArray();
-
-        for (int i = 0; i < patternChar.length-word.length()-1; i++) {
-            char currentChar = patternChar[i];
-            char charAfterWord = patternChar[i+word.length()+1];
-            if(isLetter(currentChar)) {
-                continue;
-            }
-            if(isLetter(charAfterWord)){
-                continue;
-            }
-
-            String fragmentOfPattern = new String(Arrays.copyOfRange(patternChar, i+1, i+word.length()+1));
-            if(fragmentOfPattern.matches("^_+$")){ // If the new-found pattern doesn't contain any letters from the original pattern, then it cannot be used
-                continue;
-            }
-
-            if (doesCheckedWordMatchPatternOfSameLength(word, fragmentOfPattern)) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-//    public static boolean foundPatternIsntJust_()
-
-    public static boolean isLetter(char letter) {
-        return Character.isLetter(letter);
-    }
-
-    public static boolean doesCheckedWordMatchPatternOfSameLength(String word, String usersPattern){
-//        HashMap<Character, Character> wordAndPatternMap = twoStringsOfEqualLengthToHashMap(word, usersPattern);
-//
-//        for (Map.Entry<Character, Character> entry : wordAndPatternMap.entrySet()) {
-//            if (!(entry.getValue().equals(entry.getKey())  || entry.getValue().equals('_'))) {
-//                return false;
-//            }
-//        }
-        for (int i = 0; i < word.length(); i++) {
-            if (!(word.charAt(i) == usersPattern.charAt(i) || usersPattern.charAt(i) == '_')) {
-                return false;
-            }
-
-        }
-
-        return true;
-    }
-
-    public static ArrayList<String> somethingOfAMap(String word, String usersPattern){
-        ArrayList<String> out = new ArrayList<>();
-
-        for (int i = 0; i < word.length(); i++) {
-            out.add(new String(String.valueOf(word.charAt(i)+usersPattern.charAt(i))));
-        }
-
-        return out;
-    }
-
-    public static boolean checkedWordContainsAtLeastOneLetterFromPattern(String word, String usersPattern){
-        char[] usersPatternArray = usersPattern.replace("_", "").toCharArray();
-        for (char c : usersPatternArray) {
-            if(word.contains(String.valueOf(c))){
-                return true;
-            }
-        }
-
-        return false;
     }
 
 
