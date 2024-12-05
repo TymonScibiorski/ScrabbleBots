@@ -2,11 +2,11 @@ import java.util.ArrayList;
 
 public class patternMatcher {
 
-    public static String[] patternMatcher(String word, String pattern) {
+    public static String[] patternMatcher(String word, String pattern, String playaLetters) {
         return new String[]{String.valueOf(doesStringMatchPattern(word, pattern)), usedLettersFromPattern(word, pattern)};
     }
 
-    public static String usedLettersFromPattern(String word, String pattern) {
+    public static String usedLettersFromPattern(String word, String patter) {
         StringBuilder out = new StringBuilder();
         return out.toString();
     }
@@ -51,10 +51,14 @@ public class patternMatcher {
         ArrayList<String> out = new ArrayList<>();
 
         for (int i = 0; i < pattern.length() - word.length()+1; i++) {
+            String proposedFragment = pattern.substring(i, i+word.length());
+            if (isJustUnderscores(proposedFragment)) {
+                continue;
+            }
+
             if (i == 0) {
 //                char before = pattern.charAt(i-1);
                 char after = pattern.charAt(i + word.length());
-                String proposedFragment = pattern.substring(i, i+word.length());
                 if (!isLetter(after) && !isJustUnderscores(proposedFragment)) {
                     out.add(proposedFragment);
                 }
@@ -64,7 +68,6 @@ public class patternMatcher {
             if (i == pattern.length() - word.length()) {
                 char before = pattern.charAt(i-1);
 //                char after = pattern.charAt(i + word.length());
-                String proposedFragment = pattern.substring(i, i+word.length());
                 if (!isLetter(before) && !isJustUnderscores(proposedFragment)) {
                     out.add(proposedFragment);
                 }
@@ -73,7 +76,6 @@ public class patternMatcher {
 
             char before = pattern.charAt(i-1);
             char after = pattern.charAt(i + word.length());
-            String proposedFragment = pattern.substring(i, i+word.length());
             if (!isLetter(before) && !isLetter(after) && !isJustUnderscores(proposedFragment)) {
                 out.add(proposedFragment);
             }

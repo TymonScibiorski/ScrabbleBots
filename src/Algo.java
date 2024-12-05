@@ -44,7 +44,7 @@ public class Algo {
             return false;
         }
 
-        if (!pattern.isBlank() && !patternMatcher.doesStringMatchPattern(word, pattern)){
+        if (!patternMatcher.doesStringMatchPattern(word, pattern)){
             return false;
         }
 

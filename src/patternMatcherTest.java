@@ -54,6 +54,10 @@ public class patternMatcherTest {
         expected4.add("__t_l__ga_");
         expected4.add("_t_l__ga__");
         Assert.assertEquals(expected4, patternMatcher.AcceptableFragmentsOfPattern("patoloigac", "__t_l__ga__"));
+
+        Assert.assertEquals(new ArrayList<>(), patternMatcher.AcceptableFragmentsOfPattern("cgar", "______________"));
+
+
     }
 
     @Test
@@ -77,5 +81,13 @@ public class patternMatcherTest {
         Assert.assertFalse(patternMatcher.isJustUnderscores("_d"));
         Assert.assertFalse(patternMatcher.isJustUnderscores("asodifj"));
         Assert.assertFalse(patternMatcher.isJustUnderscores("as__fj"));
+    }
+
+    @Test
+    public void testExtractLettersFromPattern(){
+        Assert.assertEquals("abcd", patternMatcher.extractLettersFromPattern("abcd"));
+        Assert.assertEquals("abcd", patternMatcher.extractLettersFromPattern("a_b_c_d"));
+        Assert.assertEquals("abcd", patternMatcher.extractLettersFromPattern("__a_bc_d__"));
+        Assert.assertEquals("abcd", patternMatcher.extractLettersFromPattern("__________a_bc_d_"));
     }
 }
