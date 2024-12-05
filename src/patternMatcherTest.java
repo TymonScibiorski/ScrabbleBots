@@ -22,15 +22,17 @@ public class patternMatcherTest {
         Assert.assertFalse(patternMatcher.doesStringMatchPattern("zorz", "____o_y_ł_____"));
         Assert.assertFalse(patternMatcher.doesStringMatchPattern("okociły", "____o_y_______"));
 
-//        Assert.assertFalse(patternMatcher.doesStringMatchGivenLetterPattern("zdanko", "____d__z_______"));
-//        Assert.assertTrue(patternMatcher.doesStringMatchGivenLetterPattern("amen", "_m___nić"));
-//        Assert.assertTrue(patternMatcher.doesStringMatchGivenLetterPattern("fasad", "____d"));
+//        Assert.assertFalse(patternMatcher.doesStringMatchPattern("zdanko", "____d__z_______"));
+        Assert.assertTrue(patternMatcher.doesStringMatchPattern("amen", "_m___nić"));
+        Assert.assertTrue(patternMatcher.doesStringMatchPattern("fasad", "____d"));
         Assert.assertTrue(patternMatcher.doesStringMatchPattern("win", "___n"));
     }
 
 
     @Test
     public void testAcceptableFragmentsOfPattern(){
+        //The words must be shorter than the patterns, because if they weren't, they wouldn't end up in the function in the first place
+
         ArrayList<String> expected1 = new ArrayList<>();
         expected1.add("abc");
         Assert.assertEquals(expected1, patternMatcher.AcceptableFragmentsOfPattern("aaa", "abc_"));
@@ -40,6 +42,18 @@ public class patternMatcherTest {
         expected2.add("def");
         expected2.add("ghi");
         Assert.assertEquals(expected2, patternMatcher.AcceptableFragmentsOfPattern("aaa", "abc_def_ghi"));
+
+        ArrayList<String> expected3 = new ArrayList<>();
+        expected3.add("__t");
+        expected3.add("t_l");
+        expected3.add("_ga");
+        expected3.add("ga_");
+        Assert.assertEquals(expected3, patternMatcher.AcceptableFragmentsOfPattern("tol", "__t_l__ga__"));
+
+        ArrayList<String> expected4 = new ArrayList<>();
+        expected4.add("__t_l__ga_");
+        expected4.add("_t_l__ga__");
+        Assert.assertEquals(expected4, patternMatcher.AcceptableFragmentsOfPattern("patoloigac", "__t_l__ga__"));
     }
 
     @Test

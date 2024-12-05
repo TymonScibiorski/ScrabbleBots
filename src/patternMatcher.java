@@ -50,7 +50,7 @@ public class patternMatcher {
     public static ArrayList<String> AcceptableFragmentsOfPattern(String word, String pattern){
         ArrayList<String> out = new ArrayList<>();
 
-        for (int i = 0; i < pattern.length() - word.length(); i++) {
+        for (int i = 0; i < pattern.length() - word.length()+1; i++) {
             if (i == 0) {
 //                char before = pattern.charAt(i-1);
                 char after = pattern.charAt(i + word.length());
@@ -61,7 +61,7 @@ public class patternMatcher {
                 continue;
             }
 
-            if (i == pattern.length() - word.length() - 1) {
+            if (i == pattern.length() - word.length()) {
                 char before = pattern.charAt(i-1);
 //                char after = pattern.charAt(i + word.length());
                 String proposedFragment = pattern.substring(i, i+word.length());
