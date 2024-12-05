@@ -31,10 +31,15 @@ public class patternMatcherTest {
 
     @Test
     public void testAcceptableFragmentsOfPattern(){
-        Assert.assertEquals(
-                patternMatcher.AcceptableFragmentsOfPattern("aaa", "abca"),
-                new ArrayList<String>(Arrays.asList("abc", "bca"))
-        );
+        ArrayList<String> expected1 = new ArrayList<>();
+        expected1.add("abc");
+        Assert.assertEquals(expected1, patternMatcher.AcceptableFragmentsOfPattern("aaa", "abc_"));
+
+        ArrayList<String> expected2 = new ArrayList<>();
+        expected2.add("abc");
+        expected2.add("def");
+        expected2.add("ghi");
+        Assert.assertEquals(expected2, patternMatcher.AcceptableFragmentsOfPattern("aaa", "abc_def_ghi"));
     }
 
     @Test
@@ -50,13 +55,13 @@ public class patternMatcherTest {
 
     @Test
     public void testIsFoundPatternJustUnderscores(){
-        Assert.assertTrue(patternMatcher.isFoundPatternJustUnderscores("__"));
-        Assert.assertTrue(patternMatcher.isFoundPatternJustUnderscores("____"));
-        Assert.assertTrue(patternMatcher.isFoundPatternJustUnderscores("_"));
-        Assert.assertTrue(patternMatcher.isFoundPatternJustUnderscores("_______"));
+        Assert.assertTrue(patternMatcher.isJustUnderscores("__"));
+        Assert.assertTrue(patternMatcher.isJustUnderscores("____"));
+        Assert.assertTrue(patternMatcher.isJustUnderscores("_"));
+        Assert.assertTrue(patternMatcher.isJustUnderscores("_______"));
 
-        Assert.assertFalse(patternMatcher.isFoundPatternJustUnderscores("_d"));
-        Assert.assertFalse(patternMatcher.isFoundPatternJustUnderscores("asodifj"));
-        Assert.assertFalse(patternMatcher.isFoundPatternJustUnderscores("as__fj"));
+        Assert.assertFalse(patternMatcher.isJustUnderscores("_d"));
+        Assert.assertFalse(patternMatcher.isJustUnderscores("asodifj"));
+        Assert.assertFalse(patternMatcher.isJustUnderscores("as__fj"));
     }
 }

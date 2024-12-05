@@ -1,6 +1,4 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Stack;
 
 public class patternMatcher {
 
@@ -52,7 +50,34 @@ public class patternMatcher {
     public static ArrayList<String> AcceptableFragmentsOfPattern(String word, String pattern){
         ArrayList<String> out = new ArrayList<>();
 
+        for (int i = 0; i < pattern.length() - word.length(); i++) {
+            if (i == 0) {
+//                char before = pattern.charAt(i-1);
+                char after = pattern.charAt(i + word.length());
+                String proposedFragment = pattern.substring(i, i+word.length());
+                if (!isLetter(after) && !isJustUnderscores(proposedFragment)) {
+                    out.add(proposedFragment);
+                }
+                continue;
+            }
 
+            if (i == pattern.length() - word.length() - 1) {
+                char before = pattern.charAt(i-1);
+//                char after = pattern.charAt(i + word.length());
+                String proposedFragment = pattern.substring(i, i+word.length());
+                if (!isLetter(before) && !isJustUnderscores(proposedFragment)) {
+                    out.add(proposedFragment);
+                }
+                continue;
+            }
+
+            char before = pattern.charAt(i-1);
+            char after = pattern.charAt(i + word.length());
+            String proposedFragment = pattern.substring(i, i+word.length());
+            if (!isLetter(before) && !isLetter(after) && !isJustUnderscores(proposedFragment)) {
+                out.add(proposedFragment);
+            }
+        }
 
         return out;
     }
@@ -70,7 +95,7 @@ public class patternMatcher {
         return true;
     }
 
-    public static boolean isFoundPatternJustUnderscores(String pattern){
+    public static boolean isJustUnderscores(String pattern){
         return pattern.matches("^_+$");
     }
 
