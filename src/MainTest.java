@@ -44,13 +44,13 @@ public class MainTest {
 
     @Test
     public void testContainsMustContain(){
-        Assert.assertTrue(Algo.containsMustContain("zupa", "z"));
-        Assert.assertTrue(Algo.containsMustContain("zupa", "up"));
-        Assert.assertTrue(Algo.containsMustContain("zupa", "zu"));
+        Assert.assertTrue(Algo.containsPhrase("zupa", "z"));
+        Assert.assertTrue(Algo.containsPhrase("zupa", "up"));
+        Assert.assertTrue(Algo.containsPhrase("zupa", "zu"));
 
-        Assert.assertFalse(Algo.containsMustContain("zupa", "uz"));
-        Assert.assertFalse(Algo.containsMustContain("zupa", "ż"));
-        Assert.assertFalse(Algo.containsMustContain("zupa", "pazu"));
+        Assert.assertFalse(Algo.containsPhrase("zupa", "uz"));
+        Assert.assertFalse(Algo.containsPhrase("zupa", "ż"));
+        Assert.assertFalse(Algo.containsPhrase("zupa", "pazu"));
     }
 
     @Test

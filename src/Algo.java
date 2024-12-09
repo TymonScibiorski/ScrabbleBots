@@ -40,7 +40,7 @@ public class Algo {
             return false;
         }
 
-        if (!containsMustContain(word, mustContain)) {
+        if (!containsPhrase(word, mustContain)) {
             return false;
         }
 
@@ -49,11 +49,10 @@ public class Algo {
         }
 
         return true;
-
     }
 
 
-    public static boolean containsMustContain(String word, String mustContain) {
+    public static boolean containsPhrase(String word, String mustContain) {
         if (mustContain == null) {
             return true;
         }
@@ -61,6 +60,28 @@ public class Algo {
             return true;
         }
         return false;
+    }
+
+    public static boolean containsLetters(String word, String mustContain) {
+        char[] letters = mustContain.toCharArray();
+        for (char letter : letters) {
+            for (char ch : letters) {
+
+            }
+        }
+
+
+    }
+
+    public static Stack<Character> stringToCharStack(String str) {
+        Stack<Character> out = new Stack<>();
+        char[] chars = str.toCharArray();
+
+        for (char ch : chars){
+            out.push(Character.valueOf(ch));
+        }
+
+        return out;
     }
 
 

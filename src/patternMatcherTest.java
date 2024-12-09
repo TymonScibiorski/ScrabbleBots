@@ -27,6 +27,24 @@ public class patternMatcherTest {
         Assert.assertTrue(patternMatcher.doesStringMatchPattern("fasad", "____d"));
         Assert.assertTrue(patternMatcher.doesStringMatchPattern("win", "___n"));
     }
+    
+    @Test
+    public void testDoesCheckedWordMatchPatternOfDifferentLength(){
+        Assert.assertTrue(patternMatcher.doesCheckedWordMatchPatternOfDifferentLength("tol", "__t_l__ga__"));
+        Assert.assertTrue(patternMatcher.doesCheckedWordMatchPatternOfDifferentLength("cgar", "__t_l__ga__"));
+
+        Assert.assertFalse(patternMatcher.doesCheckedWordMatchPatternOfDifferentLength("lizg", "__t_l__ga__"));
+        Assert.assertFalse(patternMatcher.doesCheckedWordMatchPatternOfDifferentLength("ślizg", "__t_l__ga__"));
+        Assert.assertFalse(patternMatcher.doesCheckedWordMatchPatternOfDifferentLength("zupa", "jrqwtyi"));
+
+        Assert.assertFalse(patternMatcher.doesCheckedWordMatchPatternOfDifferentLength("kocioł", "____o_y_______"));
+        Assert.assertFalse(patternMatcher.doesCheckedWordMatchPatternOfDifferentLength("zorz", "____o_y_ł_____"));
+        Assert.assertFalse(patternMatcher.doesCheckedWordMatchPatternOfDifferentLength("okociły", "____o_y_______"));
+
+//        Assert.assertFalse(patternMatcher.doesCheckedWordMatchPatternOfDifferentLength("zdanko", "____d__z_______"));
+        Assert.assertTrue(patternMatcher.doesCheckedWordMatchPatternOfDifferentLength("amen", "_m___nić"));
+        Assert.assertTrue(patternMatcher.doesCheckedWordMatchPatternOfDifferentLength("win", "___n"));
+    }
 
 
     @Test

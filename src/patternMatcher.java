@@ -6,8 +6,11 @@ public class patternMatcher {
         return new String[]{String.valueOf(doesStringMatchPattern(word, pattern)), usedLettersFromPattern(word, pattern)};
     }
 
-    public static String usedLettersFromPattern(String word, String patter) {
+    public static String usedLettersFromPattern(String matchedWord, String pattern) {
         StringBuilder out = new StringBuilder();
+
+        
+
         return out.toString();
     }
 
@@ -34,7 +37,7 @@ public class patternMatcher {
 
     public static boolean doesCheckedWordMatchPatternOfDifferentLength(String word, String pattern){
         // This function piggybacks of off doesCheckedWordMatchPatternOfSameLength.
-        // It cuts up the pattern into pieces that match the length of the word and checks one by one.
+        // It the pattern cut up into pieces that match the length of the word and checks one by one.
 
         ArrayList<String> AcceptableFragmentsOfPattern = AcceptableFragmentsOfPattern(word, pattern);
 
@@ -48,6 +51,8 @@ public class patternMatcher {
     }
 
     public static ArrayList<String> AcceptableFragmentsOfPattern(String word, String pattern){
+        // This method returns an ArrayList of Strings, which are word-sized fragments of the supplied pattern.
+        // These fragments are used by the doesCheckedWordMatchPatternOfDifferentLength method to piggyback of off doesCheckedWordMatchPatternOfSameLength - that's why the chunks are word-sized.
         ArrayList<String> out = new ArrayList<>();
 
         for (int i = 0; i < pattern.length() - word.length()+1; i++) {
@@ -59,7 +64,7 @@ public class patternMatcher {
             if (i == 0) {
 //                char before = pattern.charAt(i-1);
                 char after = pattern.charAt(i + word.length());
-                if (!isLetter(after) && !isJustUnderscores(proposedFragment)) {
+                if (!isLetter(after)) {
                     out.add(proposedFragment);
                 }
                 continue;
@@ -68,7 +73,7 @@ public class patternMatcher {
             if (i == pattern.length() - word.length()) {
                 char before = pattern.charAt(i-1);
 //                char after = pattern.charAt(i + word.length());
-                if (!isLetter(before) && !isJustUnderscores(proposedFragment)) {
+                if (!isLetter(before)) {
                     out.add(proposedFragment);
                 }
                 continue;
@@ -76,9 +81,10 @@ public class patternMatcher {
 
             char before = pattern.charAt(i-1);
             char after = pattern.charAt(i + word.length());
-            if (!isLetter(before) && !isLetter(after) && !isJustUnderscores(proposedFragment)) {
+            if (!isLetter(before) && !isLetter(after)) {
                 out.add(proposedFragment);
             }
+
         }
 
         return out;
