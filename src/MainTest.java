@@ -43,14 +43,32 @@ public class MainTest {
     }
 
     @Test
-    public void testContainsMustContain(){
+    public void testContainsPhrase(){
         Assert.assertTrue(Algo.containsPhrase("zupa", "z"));
         Assert.assertTrue(Algo.containsPhrase("zupa", "up"));
         Assert.assertTrue(Algo.containsPhrase("zupa", "zu"));
+        Assert.assertTrue(Algo.containsPhrase("zupa", "zup"));
+        Assert.assertTrue(Algo.containsPhrase("zupa", "zupa"));
 
         Assert.assertFalse(Algo.containsPhrase("zupa", "uz"));
         Assert.assertFalse(Algo.containsPhrase("zupa", "ż"));
         Assert.assertFalse(Algo.containsPhrase("zupa", "pazu"));
+    }
+
+    @Test
+    public void testContainsLetters(){
+        Assert.assertTrue(Algo.containsLetters("zupa", "z"));
+        Assert.assertTrue(Algo.containsLetters("zupa", "zu"));
+        Assert.assertTrue(Algo.containsLetters("zupa", "zup"));
+        Assert.assertTrue(Algo.containsLetters("zupa", "zupa"));
+        Assert.assertTrue(Algo.containsLetters("zupa", "uz"));
+        Assert.assertTrue(Algo.containsLetters("zupa", "puz"));
+        Assert.assertTrue(Algo.containsLetters("zupa", "pzu"));
+        Assert.assertTrue(Algo.containsLetters("zupa", "apuz"));
+
+        Assert.assertFalse(Algo.containsLetters("zupa", "apuzx"));
+        Assert.assertFalse(Algo.containsLetters("zupa", "puzx"));
+        Assert.assertFalse(Algo.containsLetters("zupa", ""));
     }
 
     @Test

@@ -63,13 +63,24 @@ public class Algo {
     }
 
     public static boolean containsLetters(String word, String mustContain) {
-        char[] letters = mustContain.toCharArray();
-        for (char letter : letters) {
-            for (char ch : letters) {
+        if (mustContain == null) {
+            return true;
+        }
+
+        char[] mustContainLetters = mustContain.toCharArray();
+        Stack<Character> stack = stringToCharStack(word);
+
+        while(!stack.isEmpty()) {
+            Character c = stack.pop();
+            for (char letter : mustContainLetters) {
+                if (c == letter) {
+                    return false;
+                }
 
             }
         }
 
+        return true;
 
     }
 
