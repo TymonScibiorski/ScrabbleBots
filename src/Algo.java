@@ -15,7 +15,7 @@ public class Algo {
         // This function searches wordlists and finds words that could be constructed with the given letters in the given space.
         ArrayList<String> words = new ArrayList<>();
 //        ArrayList<BufferedReader> readers = readersToBeSearched(space, letters);
-        ArrayList<Scanner> scanners = scannersToBeSearched(constraints(space, letters.length(), pattern.length()), amountOfBlankTiles);
+        ArrayList<Scanner> scanners = scannersToBeSearched(constraints(space, letters.length()+amountOfBlankTiles, pattern.length()), amountOfBlankTiles);
 
         for (Scanner scanner : scanners) {
             while (scanner.hasNextLine()) {

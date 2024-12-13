@@ -5,11 +5,17 @@ public class Main {
     public static void main(String[] args) {
         long startTime = System.currentTimeMillis();
 
+        //patternMatcher still sometimes returns falls positives by using letters from pattern that aren't in playaLetters nor in the used part of the pattern, because playaLetters get appended with lettersFromPattern
+        //TODO: stop it from returning these false positives
+
+        //TODO: Write a function that will take a word from the board and come up with a word that can touch it, but not intersect it.
+        //The new word would butt the word from board, requiring to make up a new word from playaLetters, that creates a new word with word from the board
+
         try{
-            ArrayList<String> wordsForOutput = Algo.output("z", "", "", "", "", 15, 0);
+            ArrayList<String> wordsForOutput = Algo.output("lfeywhń", "", "", "", "a", 15, 0);
             for (String word : wordsForOutput){
 
-                System.out.println(word);
+                System.out.println(word + " " + word.length());
             }
         }
         catch (IOException e){
