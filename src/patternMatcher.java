@@ -2,11 +2,8 @@ import java.util.ArrayList;
 
 public class patternMatcher {
 
-    public static String[] patternMatcher(String word, String pattern, String playaLetters) {
-        return new String[]{String.valueOf(doesStringMatchPattern(word, pattern)), usedLettersFromPattern(word, pattern)};
-    }
 
-    public static String usedLettersFromPattern(String matchedWord, String pattern) {
+    public static String usedLettersFromPattern(String matchedWord, String pattern, String playaLetters) {
         StringBuilder out = new StringBuilder();
 
         
@@ -14,7 +11,9 @@ public class patternMatcher {
         return out.toString();
     }
 
+
     public static boolean doesStringMatchPattern(String word, String pattern){
+        //This method checks if a String matches a supplied pattern
         // Preliminary checks:
         if(pattern.isBlank()){ // If the pattern is blank, true is returned. Otherwise, if there's no pattern this method would always return false, blocking all words in the Algo.canWordBeUsed
             return true;

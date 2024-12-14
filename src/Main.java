@@ -117,3 +117,15 @@ The pattern should actually look like __A_B__CD__
             - False: continue;
             - True: plug a segment of the pattern starting at i+1 and ending at i+checkedWord.length-1 into doesCheckedWordMatchPatternOfSameLength
  */
+
+/*
+Sometimes, when a pattern is supplied, the method canWordBeUsed returns false positives.
+It's caused by the Algo.output function adding all letters from a provided pattern to playaLetters.
+Even if a letter in a pattern is omitted, Algo.doLettersMatch uses it to check if a word can be created by playaLetters.
+
+How to stop canWordBeUsed from returning false positives:
+After a word is let through by pattern matcher, extract letters that were used from the pattern and append them to playaLetters, then run it through Algo.doLettersMatch.
+
+How to extract letters
+
+*/
