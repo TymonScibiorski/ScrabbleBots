@@ -126,6 +126,7 @@ Even if a letter in a pattern is omitted, Algo.doLettersMatch uses it to check i
 How to stop canWordBeUsed from returning false positives:
 After a word is let through by pattern matcher, extract letters that were used from the pattern and append them to playaLetters, then run it through Algo.doLettersMatch.
 
-How to extract letters
+How to extract letters from pattern that were used in a word:
+Remove playaLetters from the word. The letters left will be the ones taken from pattern.
 
 */
