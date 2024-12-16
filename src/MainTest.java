@@ -65,10 +65,11 @@ public class MainTest {
         Assert.assertTrue(Algo.containsLetters("zupa", "puz"));
         Assert.assertTrue(Algo.containsLetters("zupa", "pzu"));
         Assert.assertTrue(Algo.containsLetters("zupa", "apuz"));
+        Assert.assertTrue(Algo.containsLetters("zupa", ""));
 
         Assert.assertFalse(Algo.containsLetters("zupa", "apuzx"));
         Assert.assertFalse(Algo.containsLetters("zupa", "puzx"));
-        Assert.assertFalse(Algo.containsLetters("zupa", ""));
+        Assert.assertFalse(Algo.containsLetters("afganistan", "aaaa"));
     }
 
     @Test

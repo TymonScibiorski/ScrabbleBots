@@ -63,25 +63,19 @@ public class Algo {
     }
 
     public static boolean containsLetters(String word, String mustContain) {
-        if (mustContain == null) {
-            return true;
-        }
+        HashMap<Character, Integer> wordMap = stringToHashMap(word);
+        HashMap<Character, Integer> mustContainMap = stringToHashMap(mustContain);
 
-        char[] mustContainLetters = mustContain.toCharArray();
-        Stack<Character> stack = stringToCharStack(word);
+        // Foring through letters in the checked word
+        for (Map.Entry<Character, Integer> entry : mustContainMap.entrySet()) {
+            int amountOfGivenLetterInWord = wordMap.getOrDefault(entry.getKey(), 0);
 
-        while(!stack.isEmpty()) {
-            Character c = stack.pop();
-            for (char letter : mustContainLetters) {
-                if (c == letter) {
-                    return false;
-                }
-
+            if (amountOfGivenLetterInWord < entry.getValue()) {
+                return false;
             }
         }
 
         return true;
-
     }
 
     public static Stack<Character> stringToCharStack(String str) {
