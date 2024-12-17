@@ -4,24 +4,24 @@ import java.io.IOException;
 import java.util.*;
 
 public class Algo {
-    public static ArrayList<String> output(String lettersStr,  String mustContain, String pattern,String beginsWith, String endsIn, int space, Integer amountOfBlankTiles) throws IOException {
+    public static ArrayList<String> output(String lettersStr,  String mustContain, String pattern, String beginsWith, String endsIn, String mustContainLetters, int space, Integer amountOfBlankTiles) throws IOException {
         lettersStr += mustContain + beginsWith + endsIn + pattern.replace("_", "");
 
-        return foundWords(space, lettersStr, pattern, beginsWith, endsIn, mustContain, amountOfBlankTiles);
+        return foundWords(space, lettersStr, pattern, beginsWith, endsIn, mustContain, mustContainLetters, amountOfBlankTiles);
     }
 
 
-    public static ArrayList<String> foundWords(int space, String letters, String pattern, String beginsWith, String endsWith, String mustContain, Integer amountOfBlankTiles) throws IOException {
+    public static ArrayList<String> foundWords(int space, String letters, String pattern, String beginsWith, String endsWith, String mustContain, String mustContainLetters, Integer amountOfBlankTiles) throws IOException {
         // This function searches wordlists and finds words that could be constructed with the given letters in the given space.
         ArrayList<String> words = new ArrayList<>();
 //        ArrayList<BufferedReader> readers = readersToBeSearched(space, letters);
-        ArrayList<Scanner> scanners = scannersToBeSearched(constraints(space, letters.length()+amountOfBlankTiles, pattern.length()), amountOfBlankTiles);
+        ArrayList<Scanner> scanners = scannersToBeSearched(constraints(space, letters.length()+amountOfBlankTiles, pattern.length()));
 
         for (Scanner scanner : scanners) {
             while (scanner.hasNextLine()) {
                 String word = scanner.nextLine();
 
-                if (canWordBeUsed(word, letters, pattern, beginsWith, endsWith, mustContain, amountOfBlankTiles)) {
+                if (canWordBeUsed(word, letters, pattern, beginsWith, endsWith, mustContain, mustContainLetters, amountOfBlankTiles)) {
                     words.add(word);
                 }
             }
@@ -30,10 +30,15 @@ public class Algo {
     }
 
 
-    public static boolean canWordBeUsed(String word, String playaLettersStr, String pattern, String beginsWith, String endsWith, String mustContain, Integer amountOfBlankTiles) {
+    public static boolean canWordBeUsed(String word, String playaLettersStr, String pattern, String beginsWith, String endsWith, String mustContain, String mustContainLetters, Integer amountOfBlankTiles) {
         //This method checks if a given word can be constructed with the Player's letters and if it starts and ends with optionally specified strings
-        if (!doLettersMatch(word, playaLettersStr, amountOfBlankTiles)) {
+        if (!patternMatcher.doesStringMatchPatternAndPlayaLetters(word, pattern, playaLettersStr, amountOfBlankTiles)){
             return false;
+        }
+        if (pattern.isBlank()) { // If a pattern is found, doLettersMatch is executed in patternMatcher
+            if (!doLettersMatch(word, playaLettersStr, amountOfBlankTiles)) {
+                return false;
+            }
         }
 
         if (!doesBeginningAndEndMatch(word, beginsWith, endsWith)) {
@@ -43,10 +48,10 @@ public class Algo {
         if (!containsPhrase(word, mustContain)) {
             return false;
         }
-
-        if (!patternMatcher.doesStringMatchPattern(word, pattern)){
+        if (!containsLetters(word, mustContainLetters)) {
             return false;
         }
+
 
         return true;
     }
@@ -63,6 +68,10 @@ public class Algo {
     }
 
     public static boolean containsLetters(String word, String mustContain) {
+        if (mustContain == null) {
+            return true;
+        }
+
         HashMap<Character, Integer> wordMap = stringToHashMap(word);
         HashMap<Character, Integer> mustContainMap = stringToHashMap(mustContain);
 
@@ -123,11 +132,11 @@ public class Algo {
     }
 
 
-    public static ArrayList<Scanner> scannersToBeSearched(int constraints, Integer amountOfBlankTiles) throws FileNotFoundException {
+    public static ArrayList<Scanner> scannersToBeSearched(int constraints) throws FileNotFoundException {
         // This function returns scanners of wordlists that will be searched through to find words that could be constructed with the given letters in the given space.
         ArrayList<Scanner> scannersToBeSearched = new ArrayList<>();
 
-        for (int i = 2; i <= constraints+amountOfBlankTiles; i++) {
+        for (int i = 2; i <= constraints; i++) {
             String pathname = "src\\words" + i + ".txt";
             scannersToBeSearched.add(new Scanner(new FileReader(pathname)));
         }

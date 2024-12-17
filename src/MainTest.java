@@ -10,20 +10,18 @@ public class MainTest {
     }
 
 
-
     @Test
     public void testDoLettersMatch(){
         Assert.assertTrue(Algo.doLettersMatch("aaafginnst", "afganistan", 0));
         Assert.assertTrue(Algo.doLettersMatch("backdown", "abcdknow",0));
         Assert.assertTrue(Algo.doLettersMatch("abcd", "abcd", 0));
         Assert.assertTrue(Algo.doLettersMatch("yzny", "żyzny", 1));
+        Assert.assertTrue(Algo.doLettersMatch("fale", "laełfł", 1));
 
-        Assert.assertTrue(Algo.doLettersMatch("laełfł", "fale", 1));
-
-        Assert.assertFalse(Algo.doLettersMatch("yzny", "żyzny", 0));
-        Assert.assertFalse(Algo.doLettersMatch("aafginnst", "afganistan", 0));
-        Assert.assertFalse(Algo.doLettersMatch("backdow", "abcdknow",0));
-        Assert.assertFalse(Algo.doLettersMatch("addd", "abcd", 0));
+        Assert.assertFalse(Algo.doLettersMatch("żyzny", "yzny",0));
+        Assert.assertFalse(Algo.doLettersMatch( "afganistan", "aafginnst",0));
+        Assert.assertFalse(Algo.doLettersMatch( "abcdknow","backdow",0));
+        Assert.assertFalse(Algo.doLettersMatch( "abcd", "addd",0));
     }
 
     @Test
@@ -40,6 +38,7 @@ public class MainTest {
         Assert.assertEquals(1, Algo.constraints(1,2,3));
         Assert.assertEquals(2, Algo.constraints(2,3,4));
         Assert.assertEquals(0, Algo.constraints(0,16,4));
+        Assert.assertEquals(15, Algo.constraints(15,15,15));
     }
 
     @Test
@@ -74,7 +73,8 @@ public class MainTest {
 
     @Test
     public void canWordBeUsed() {
-        Assert.assertTrue(Algo.canWordBeUsed("fale", "laełfł", "", "", "", "", 1));
+        Assert.assertTrue(Algo.canWordBeUsed("fale", "laełfł", "", "", "", "", "", 1));
 
+        Assert.assertFalse(Algo.canWordBeUsed("rozwodzeń", "rowoeńk", "_______z__d____", "", "", "","", 0));
     }
     }

@@ -8,11 +8,11 @@ public class Main {
         //patternMatcher still sometimes returns falls positives by using letters from pattern that aren't in playaLetters nor in the used part of the pattern, because playaLetters get appended with lettersFromPattern
         //TODO: stop it from returning these false positives
 
-        //TODO: Write a function that will take a word from the board and come up with a word that can touch it, but not intersect it.
+        //TODO: Write a function that will take a word from the board and come up with a word that touches it, but does not intersect it.
         //The new word would butt the word from board, requiring to make up a new word from playaLetters, that creates a new word with word from the board
 
         try{
-            ArrayList<String> wordsForOutput = Algo.output("lfeywhń", "", "", "", "a", 15, 0);
+            ArrayList<String> wordsForOutput = Algo.output("krowońe", "", "_______z__d____", "", "", "", 15, 0);
             for (String word : wordsForOutput){
 
                 System.out.println(word + " " + word.length());
@@ -26,6 +26,8 @@ public class Main {
         long elapsedTime = endTime - startTime;
         System.out.println("Elapsed time: " + elapsedTime + " ms");
        }
+
+
     }
 
 //Scrabble bot:
@@ -120,13 +122,15 @@ The pattern should actually look like __A_B__CD__
 
 /*
 Sometimes, when a pattern is supplied, the method canWordBeUsed returns false positives.
-It's caused by the Algo.output function adding all letters from a provided pattern to playaLetters.
-Even if a letter in a pattern is omitted, Algo.doLettersMatch uses it to check if a word can be created by playaLetters.
+
+Algo.canWordBeUsed is made up of several functions, returning "false" if a word doesn't match their criteria.
+patternMatcher lets words through if they match a pattern, with complete disregard to if a word can be constructed using playaLetters.
+Algo.doLettersMatch checks if a word can be constructed with the given letters, of which letters from pattern are a part of.
+That's the root of the cause. patternMatcher provided with a pattern "_a_b__" would naturally let a word "bao" through, as it's supposed to.
+playaLetters would be appended with "ab", and if the player holds the letter "o" and the word "bao" would be outputted, even though it cannot actually be constructed.
 
 How to stop canWordBeUsed from returning false positives:
-After a word is let through by pattern matcher, extract letters that were used from the pattern and append them to playaLetters, then run it through Algo.doLettersMatch.
-
-How to extract letters from pattern that were used in a word:
-Remove playaLetters from the word. The letters left will be the ones taken from pattern.
+If a pattern is provided, checking doLettersMatch to be omitted and its task to be outsourced to patternMatcher.
+That way patternMatcher.doesCheckedWordMatchPatternOfSameLength could check if the current word could be made out of playaLetters+lettersFromPatternFragment.
 
 */

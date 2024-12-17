@@ -3,16 +3,7 @@ import java.util.ArrayList;
 public class patternMatcher {
 
 
-    public static String usedLettersFromPattern(String matchedWord, String pattern, String playaLetters) {
-        StringBuilder out = new StringBuilder();
-
-        
-
-        return out.toString();
-    }
-
-
-    public static boolean doesStringMatchPattern(String word, String pattern){
+    public static boolean doesStringMatchPatternAndPlayaLetters(String word, String pattern, String playaLetters, int amountOfBlankTiles){
         //This method checks if a String matches a supplied pattern
         // Preliminary checks:
         if(pattern.isBlank()){ // If the pattern is blank, true is returned. Otherwise, if there's no pattern this method would always return false, blocking all words in the Algo.canWordBeUsed
@@ -27,21 +18,22 @@ public class patternMatcher {
 
         // Actual pattern matching:
         if (pattern.length() == word.length()) {
-            return doesCheckedWordMatchPatternOfSameLength(word, pattern);
+            return doesCheckedWordMatchPatternOfSameLengthAndPlayaLetters(word, pattern, playaLetters, amountOfBlankTiles);
         }
         else {
-            return doesCheckedWordMatchPatternOfDifferentLength(word, pattern);
+            return doesCheckedWordMatchPatternOfDifferentLength(word, pattern, playaLetters, amountOfBlankTiles);
         }
     }
 
-    public static boolean doesCheckedWordMatchPatternOfDifferentLength(String word, String pattern){
+
+    public static boolean doesCheckedWordMatchPatternOfDifferentLength(String word, String pattern, String playaLetters, int amountOfBlankTiles){
         // This function piggybacks of off doesCheckedWordMatchPatternOfSameLength.
         // It the pattern cut up into pieces that match the length of the word and checks one by one.
 
-        ArrayList<String> AcceptableFragmentsOfPattern = AcceptableFragmentsOfPattern(word, pattern);
+        ArrayList<String> FragmentsOfPattern = FragmentsOfPattern(word, pattern);
 
-        for (String patternFragment : AcceptableFragmentsOfPattern) {
-            if (doesCheckedWordMatchPatternOfSameLength(word, patternFragment)) {
+        for (String patternFragment : FragmentsOfPattern) {
+            if (doesCheckedWordMatchPatternOfSameLengthAndPlayaLetters(word, patternFragment, playaLetters, amountOfBlankTiles)) {
                 return true;
             }
         }
@@ -49,7 +41,28 @@ public class patternMatcher {
         return false;
     }
 
-    public static ArrayList<String> AcceptableFragmentsOfPattern(String word, String pattern){
+
+    public static boolean doesCheckedWordMatchPatternOfSameLengthAndPlayaLetters(String word, String pattern, String playaLetters, int amountOfBlankTiles){
+        if (!(doesStringMatchPatternOfSameLength(word, pattern))){
+            return false;
+        }
+        String availableLetters = playaLetters + pattern.replace("_", "");
+        return Algo.doLettersMatch(word, availableLetters, amountOfBlankTiles);
+    }
+
+
+    public static boolean doesStringMatchPatternOfSameLength(String word, String pattern){
+        for (int i = 0; i < word.length(); i++) {
+
+            if (!(word.charAt(i) == pattern.charAt(i) || pattern.charAt(i) == '_')) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public static ArrayList<String> FragmentsOfPattern(String word, String pattern){
         // This method returns an ArrayList of Strings, which are word-sized fragments of the supplied pattern.
         // These fragments are used by the doesCheckedWordMatchPatternOfDifferentLength method to piggyback of off doesCheckedWordMatchPatternOfSameLength - that's why the chunks are word-sized.
         ArrayList<String> out = new ArrayList<>();
@@ -91,16 +104,6 @@ public class patternMatcher {
 
 
 
-    public static boolean doesCheckedWordMatchPatternOfSameLength(String word, String pattern){
-        for (int i = 0; i < word.length(); i++) {
-
-            if (!(word.charAt(i) == pattern.charAt(i) || pattern.charAt(i) == '_')) {
-                return false;
-            }
-        }
-
-        return true;
-    }
 
     public static boolean isJustUnderscores(String pattern){
         return pattern.matches("^_+$");
