@@ -76,5 +76,9 @@ public class MainTest {
         Assert.assertTrue(Algo.canWordBeUsed("fale", "laełfł", "", "", "", "", "", 1));
 
         Assert.assertFalse(Algo.canWordBeUsed("rozwodzeń", "rowoeńk", "_______z__d____", "", "", "","", 0));
+        Assert.assertFalse(Algo.canWordBeUsed("orze", "rowoeńk", "_______z__d____", "", "", "","", 0));
+        Assert.assertFalse(Algo.canWordBeUsed("rdze", "rowoeńk", "_______z__d____", "", "", "","", 0));
+        Assert.assertFalse(Algo.canWordBeUsed("rdzo", "rowoeńk", "_______z__d____", "", "", "","", 0));
+        Assert.assertFalse(Algo.canWordBeUsed("rzez", "rowoeńk", "_______z__d____", "", "", "","", 0));
     }
     }
