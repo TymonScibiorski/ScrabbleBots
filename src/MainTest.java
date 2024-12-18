@@ -76,9 +76,18 @@ public class MainTest {
         Assert.assertTrue(Algo.canWordBeUsed("fale", "laełfł", "", "", "", "", "", 1));
 
         Assert.assertFalse(Algo.canWordBeUsed("rozwodzeń", "rowoeńk", "_______z__d____", "", "", "","", 0));
-        Assert.assertFalse(Algo.canWordBeUsed("orze", "rowoeńk", "_______z__d____", "", "", "","", 0));
         Assert.assertFalse(Algo.canWordBeUsed("rdze", "rowoeńk", "_______z__d____", "", "", "","", 0));
         Assert.assertFalse(Algo.canWordBeUsed("rdzo", "rowoeńk", "_______z__d____", "", "", "","", 0));
         Assert.assertFalse(Algo.canWordBeUsed("rzez", "rowoeńk", "_______z__d____", "", "", "","", 0));
+        Assert.assertFalse(Algo.canWordBeUsed("zorz", "rowoeńk", "_______z__d____", "", "", "","", 0));
+        Assert.assertFalse(Algo.canWordBeUsed("zwodzeń", "rowoeńk", "_______z__d____", "", "", "","", 0));
+        Assert.assertFalse(Algo.canWordBeUsed("zrodzeń", "rowoeńk", "_______z__d____", "", "", "","", 0));
+        Assert.assertFalse(Algo.canWordBeUsed("dozorze", "rowoeńk", "_______z__d____", "", "", "","", 0));
+        Assert.assertFalse(Algo.canWordBeUsed("zworze", "rowoeńk", "_______z__d____", "", "", "","", 0));
+        Assert.assertFalse(Algo.canWordBeUsed("wzorze", "rowoeńk", "_______z__d____", "", "", "","", 0));
+        Assert.assertFalse(Algo.canWordBeUsed("ozorze", "rowoeńk", "_______z__d____", "", "", "","", 0));
+        // The tests above returns the expected value - false - but for the word still made it to the output!
+
+        Assert.assertFalse(Algo.canWordBeUsed("orze", "rowoeńk", "_______z__d____", "", "", "","", 0));
     }
     }

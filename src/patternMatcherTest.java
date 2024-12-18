@@ -37,6 +37,9 @@ public class patternMatcherTest {
         Assert.assertFalse(patternMatcher.doesStringMatchPatternAndPlayaLetters("zdanko", "____d__z_______", "anko", 0));
 
         Assert.assertFalse(patternMatcher.doesCheckedWordMatchPatternOfDifferentLength("rozwodzeń", "_______z__d____", "krowońe", 0));
+        // This test returns the expected value - false - but for the word still made it to the output!
+
+
     }
 
     @Test
