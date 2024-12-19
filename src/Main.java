@@ -12,7 +12,7 @@ public class Main {
         //The new word would butt the word from board, requiring to make up a new word from playaLetters, that creates a new word with word from the board
 
         try{
-            ArrayList<String> wordsForOutput = Algo.output("krowońe", "", "_______z__d____", "", "", "", 15, 0);
+            ArrayList<String> wordsForOutput = Algo.output("oiukóay", "", "_____z_e______", "", "", "", 15, 0);
             for (String word : wordsForOutput){
 
                 System.out.println(word + " " + word.length());
