@@ -10,6 +10,7 @@ public class MainTest {
     }
 
 
+
     @Test
     public void testDoLettersMatch(){
         Assert.assertTrue(Algo.doLettersMatch("aaafginnst", "afganistan", 0));
@@ -88,6 +89,16 @@ public class MainTest {
         Assert.assertFalse(Algo.canWordBeUsed("ozorze", "rowoeńk", "_______z__d____", "", "", "","", 0));
         // The tests above returns the expected value - false - but for the word still made it to the output!
 
-//        Assert.assertFalse(Algo.canWordBeUsed("orze", "rowoeńk", "_______z__d____", "", "", "","", 0));
+    }
+
+    @Test
+    public void testcontainsAtLeastOneLetterFrom(){
+        Assert.assertTrue(Algo.containsAtLeastOneLetterFrom("zupa", "dinozaur"));
+        Assert.assertTrue(Algo.containsAtLeastOneLetterFrom("dinozaur", "dinozaury"));
+//        Assert.assertTrue(Algo.containsAtLeastOneLetterFrom("", ""));
+
+        Assert.assertFalse(Algo.containsAtLeastOneLetterFrom("burza", "lity"));
+        Assert.assertFalse(Algo.containsAtLeastOneLetterFrom("zupa", "tlić"));
+//        Assert.assertFalse(Algo.containsAtLeastOneLetterFrom("", ""));
     }
     }

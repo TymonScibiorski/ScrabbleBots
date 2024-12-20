@@ -4,10 +4,10 @@ import java.io.IOException;
 import java.util.*;
 
 public class Algo {
-    public static ArrayList<String> output(String lettersStr,  String mustContain, String pattern, String beginsWith, String endsIn, String mustContainLetters, int space, Integer amountOfBlankTiles) throws IOException {
-        lettersStr += mustContain + beginsWith + endsIn;
+    public static ArrayList<String> output(String lettersStr, String intersectsWord, String pattern, String mustContainPhrase, String beginsWith, String endsIn, String mustContainLetters, int space, Integer amountOfBlankTiles) throws IOException {
+        lettersStr += mustContainPhrase + beginsWith + endsIn;
 
-        return foundWords(space, lettersStr, pattern, beginsWith, endsIn, mustContain, mustContainLetters, amountOfBlankTiles);
+        return foundWords(space, lettersStr, pattern, beginsWith, endsIn, mustContainPhrase, mustContainLetters, amountOfBlankTiles);
     }
 
 
@@ -85,6 +85,17 @@ public class Algo {
         }
 
         return true;
+    }
+
+    public static boolean containsAtLeastOneLetterFrom(String proposedWord, String wordFromBoard) {
+        char[] wordFromBoardChars = wordFromBoard.toCharArray();
+        for (char c : wordFromBoardChars) {
+            if (proposedWord.contains(String.valueOf(c))) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public static Stack<Character> stringToCharStack(String str) {
