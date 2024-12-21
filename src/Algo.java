@@ -7,11 +7,11 @@ public class Algo {
     public static ArrayList<String> output(String lettersStr, String intersectsWord, String pattern, String mustContainPhrase, String beginsWith, String endsIn, String mustContainLetters, int space, Integer amountOfBlankTiles) throws IOException {
         lettersStr += mustContainPhrase + beginsWith + endsIn;
 
-        return foundWords(space, lettersStr, pattern, beginsWith, endsIn, mustContainPhrase, mustContainLetters, amountOfBlankTiles);
+        return foundWords(space, lettersStr, pattern, beginsWith, endsIn, mustContainPhrase, mustContainLetters, amountOfBlankTiles, intersectsWord);
     }
 
 
-    public static ArrayList<String> foundWords(int space, String letters, String pattern, String beginsWith, String endsWith, String mustContain, String mustContainLetters, Integer amountOfBlankTiles) throws IOException {
+    public static ArrayList<String> foundWords(int space, String letters, String pattern, String beginsWith, String endsWith, String mustContain, String mustContainLetters, Integer amountOfBlankTiles, String intersectsWord) throws IOException {
         // This function searches wordlists and finds words that could be constructed with the given letters in the given space.
         ArrayList<String> words = new ArrayList<>();
 //        ArrayList<BufferedReader> readers = readersToBeSearched(space, letters);
@@ -21,7 +21,7 @@ public class Algo {
             while (scanner.hasNextLine()) {
                 String word = scanner.nextLine();
 
-                if (canWordBeUsed(word, letters, pattern, beginsWith, endsWith, mustContain, mustContainLetters, amountOfBlankTiles)) {
+                if (canWordBeUsed(word, letters, pattern, beginsWith, endsWith, mustContain, mustContainLetters, amountOfBlankTiles, intersectsWord)) {
                     words.add(word);
                 }
             }
@@ -30,12 +30,16 @@ public class Algo {
     }
 
 
-    public static boolean canWordBeUsed(String word, String playaLettersStr, String pattern, String beginsWith, String endsWith, String mustContain, String mustContainLetters, Integer amountOfBlankTiles) {
+    public static boolean canWordBeUsed(String word, String playaLettersStr, String pattern, String beginsWith, String endsWith, String mustContain, String mustContainLetters, Integer amountOfBlankTiles, String intersectsWord) {
         //This method checks if a given word can be constructed with the Player's letters and if it starts and ends with optionally specified strings
         if (!patternMatcher.doesStringMatchPatternAndPlayaLetters(word, pattern, playaLettersStr, amountOfBlankTiles)){
             return false;
         }
-        if (pattern.isBlank()) { // If a pattern is found, doLettersMatch is executed in patternMatcher
+        if(!canIntersect(word, intersectsWord, playaLettersStr, amountOfBlankTiles)) {
+            return false;
+        }
+
+        if (pattern.isBlank() && intersectsWord.isBlank()) { // If a pattern is found or a word to be intersected is present, doLettersMatch is executed in patternMatcher or canIntersect
             if (!doLettersMatch(word, playaLettersStr, amountOfBlankTiles)) {
                 return false;
             }
@@ -87,10 +91,15 @@ public class Algo {
         return true;
     }
 
-    public static boolean containsAtLeastOneLetterFrom(String proposedWord, String wordFromBoard) {
-        char[] wordFromBoardChars = wordFromBoard.toCharArray();
+    public static boolean canIntersect(String intersector, String intersectee, String playaLetters, int amountOfBlankTiles) {
+        // A checked word can intersect a word from the board if they share at least one letter
+        if (intersectee.isBlank()) {
+            return true;
+        }
+
+        char[] wordFromBoardChars = intersectee.toCharArray();
         for (char c : wordFromBoardChars) {
-            if (proposedWord.contains(String.valueOf(c))) {
+            if (intersector.contains(String.valueOf(c)) && Algo.doLettersMatch(intersector, playaLetters+c, amountOfBlankTiles)) {
                 return true;
             }
         }
