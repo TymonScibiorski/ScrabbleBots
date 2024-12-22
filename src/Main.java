@@ -9,8 +9,6 @@ public class Main {
         //The new word would butt the word from board, requiring to make up a new word from playaLetters, that creates a new word with word from the board
 
         //TODO: Write a function that will calculate how many points a given word would yield
-        //TODO: Investigate and optimise constraints, some dictionaries aren't searched.
-
 
         try{
 //            ArrayList<String> wordsForOutput = Algo.output("", "", "", "", "", "", "", 15, 0);
