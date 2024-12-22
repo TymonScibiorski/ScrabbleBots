@@ -35,11 +35,17 @@ public class MainTest {
     }
 
     @Test
-    public void testConstrains(){
-        Assert.assertEquals(1, Algo.constraints(1,2,3));
-        Assert.assertEquals(2, Algo.constraints(2,3,4));
-        Assert.assertEquals(0, Algo.constraints(0,16,4));
-        Assert.assertEquals(15, Algo.constraints(15,15,15));
+    public void testConstrainsNew(){
+        Assert.assertEquals(4, Algo.constraintsNew("zupatży", "_u__", "ulep", 2));
+        Assert.assertEquals(2, Algo.constraintsNew("afganistan", "_a", "zupa", 0));
+        Assert.assertEquals(15, Algo.constraintsNew("rrrrrrr", "a_a_a_a_a_a_a_a", "", 0));
+
+        Assert.assertEquals(7, Algo.constraintsNew("rrrrrrr", "", "", 0));
+        Assert.assertEquals(8, Algo.constraintsNew("rrrrrrr", "_______a", "", 0));
+
+//        Assert.assertEquals();
+
+//        Assert.assertEquals(15, Algo.constraints(,15,15));
     }
 
     @Test

@@ -4,24 +4,27 @@ import java.io.IOException;
 import java.util.*;
 
 public class Algo {
-    public static ArrayList<String> output(String lettersStr, String intersectsWord, String pattern, String mustContainPhrase, String beginsWith, String endsIn, String mustContainLetters, int space, Integer amountOfBlankTiles) throws IOException {
+    public static ArrayList<String> output(String lettersStr, String intersectsWord, String pattern, String mustContainPhrase, String beginsWith, String endsIn, String mustContainLetters, Integer amountOfBlankTiles) throws IOException {
         lettersStr += mustContainPhrase + beginsWith + endsIn;
 
-        return foundWords(space, lettersStr, pattern, beginsWith, endsIn, mustContainPhrase, mustContainLetters, amountOfBlankTiles, intersectsWord);
+        return foundWords(lettersStr, pattern, beginsWith, endsIn, mustContainPhrase, mustContainLetters, amountOfBlankTiles, intersectsWord);
     }
 
 
-    public static ArrayList<String> foundWords(int space, String letters, String pattern, String beginsWith, String endsWith, String mustContain, String mustContainLetters, Integer amountOfBlankTiles, String intersectsWord) throws IOException {
+    public static ArrayList<String> foundWords(String playaLetters, String pattern, String beginsWith, String endsWith, String mustContain, String mustContainLetters, Integer amountOfBlankTiles, String intersectsWord) throws IOException {
         // This function searches wordlists and finds words that could be constructed with the given letters in the given space.
         ArrayList<String> words = new ArrayList<>();
 //        ArrayList<BufferedReader> readers = readersToBeSearched(space, letters);
-        ArrayList<Scanner> scanners = scannersToBeSearched(constraints(space, letters.length()+amountOfBlankTiles, pattern.length()));
+//        String allPotentiallyAvailableLetters = letters+pattern.replace("_", "")+beginsWith+endsWith+mustContain+mustContainLetters+amountOfBlankTiles+intersectsWord;
+//        ArrayList<Scanner> scanners = scannersToBeSearched(constraints(space, playaLetters.length(), pattern.length()));
+        ArrayList<Scanner> scanners = scannersToBeSearched(constraintsNew(playaLetters, pattern, intersectsWord, amountOfBlankTiles));
+
 
         for (Scanner scanner : scanners) {
             while (scanner.hasNextLine()) {
                 String word = scanner.nextLine();
 
-                if (canWordBeUsed(word, letters, pattern, beginsWith, endsWith, mustContain, mustContainLetters, amountOfBlankTiles, intersectsWord)) {
+                if (canWordBeUsed(word, playaLetters, pattern, beginsWith, endsWith, mustContain, mustContainLetters, amountOfBlankTiles, intersectsWord)) {
                     words.add(word);
                 }
             }
@@ -164,7 +167,6 @@ public class Algo {
         return scannersToBeSearched;
     }
 
-
     public static int constraints(int space, int amountOfLetters, int patternLength) {
         int[] numbers = {space, amountOfLetters};
 
@@ -175,6 +177,26 @@ public class Algo {
         Arrays.sort(numbers);
 
         return numbers[0];
+    }
+
+
+    public static int constraintsNew(String playaLettres, String pattern, String intersectsWord, int amountOfBlankTiles) {
+        String allAvailableLetters = playaLettres + pattern.replace("_", "");
+        int wordMaxLength = allAvailableLetters.length()+amountOfBlankTiles;
+        if (!(intersectsWord.isBlank())){
+            wordMaxLength += 1;
+        }
+
+
+        if (!pattern.isBlank() && wordMaxLength > pattern.length()) {
+            wordMaxLength = pattern.length();
+        }
+
+        if (wordMaxLength > 15) {
+            wordMaxLength = 15;
+        }
+
+        return wordMaxLength;
     }
 
     private static HashMap<Character, Integer> stringToHashMap(String word) {
