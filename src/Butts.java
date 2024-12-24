@@ -1,10 +1,10 @@
 public class Butts {
-    private String[] dictionary2;
-
-
-    public boolean doesWordExist(){
-        // This function has much room for improvement. Since it will be used many times, a class could be created, which would hold the dictionary, allowing it bo be binarySearched.
-    }
+//    private String[] dictionary2;
+//
+//
+//    public boolean doesWordExist(){
+//        // This function has much room for improvement. Since it will be used many times, a class could be created, which would hold the dictionary, allowing it bo be binarySearched.
+//    }
 }
 
 /*
@@ -21,10 +21,8 @@ First way:
 Take the set word
 Prefix and suffix it with each single letter from playaLetters.
 Open up a dictionary of set word .length() +1 and test if all words resulting from the previous step exist.
-Get the letters that can either prefix or suffix the word - further called UsablePlayaLetters.
-For through UsablePlayaLetters, and on every iteration:
-Run Algo.FoundWords with playaLetters as playaLetters, with one of the UsablePlayaLetters as a mustContainLetters.
-Return all results.
+If at least one exists, return true.
+Otherwise, return false.
 
 Second way:
 
