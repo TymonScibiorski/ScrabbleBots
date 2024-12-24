@@ -10,31 +10,39 @@ public class Algo {
         return foundWords(lettersStr, pattern, beginsWith, endsIn, mustContainPhrase, mustContainLetters, amountOfBlankTiles, intersectsWord);
     }
 
-    public static Stack<String> foundWordsNew(String playaLetters, String pattern, String beginsWith, String endsWith, String mustContain, String mustContainLetters, Integer amountOfBlankTiles, String intersectsWord) throws IOException {
-        // This function searches wordlists and finds words that could be constructed with the given letters in the given space.
-        Stack<String> words = new Stack<>();
-//        ArrayList<BufferedReader> readers = readersToBeSearched(space, letters);
-        ArrayList<Scanner> scanners = scannersToBeSearched(constraintsNew(playaLetters, pattern, intersectsWord, amountOfBlankTiles));
-
-        for (Scanner scanner : scanners) {
-            while (scanner.hasNextLine()) {
-                String word = scanner.nextLine();
-
-                if (canWordBeUsed(word, playaLetters, pattern, beginsWith, endsWith, mustContain, mustContainLetters, amountOfBlankTiles, intersectsWord)) {
-                    words.add(word);
-                }
-            }
-        }
-        return words;
-    }
-
-    public static int pointsForWord(String word) {
-        int points = 0;
-        HashMap<Character, Integer> letterDictionary = new HashMap<>();
-        letterDictionary.put('a', 1);
-
-        return points;
-    }
+//    public static Stack<String> foundWordsNew(String playaLetters, String pattern, String beginsWith, String endsWith, String mustContain, String mustContainLetters, Integer amountOfBlankTiles, String intersectsWord) throws IOException {
+//        // This function searches wordlists and finds words that could be constructed with the given letters in the given space.
+//        Stack<String> words = new Stack<>();
+////        ArrayList<BufferedReader> readers = readersToBeSearched(space, letters);
+//        ArrayList<Scanner> scanners = scannersToBeSearched(constraintsNew(playaLetters, pattern, intersectsWord, amountOfBlankTiles));
+//
+//        for (Scanner scanner : scanners) {
+//            while (scanner.hasNextLine()) {
+//                String word = scanner.nextLine();
+//
+//                if (canWordBeUsed(word, playaLetters, pattern, beginsWith, endsWith, mustContain, mustContainLetters, amountOfBlankTiles, intersectsWord)) {
+//                    words.add(word);
+//                }
+//            }
+//        }
+//        return words;
+//    }
+//
+//    public static int pointsForWord(String word) {
+//        int points = 0;
+//        HashMap<Character, Integer> letterDictionary = new HashMap<>();
+//        letterDictionary.put('a', 1);
+//
+//        return points;
+//    }
+//
+//    public static int pointsForLetter(char letter) {
+//        if (letter == '0'){
+//            return 0;
+//        }
+//
+//
+//    }
 
     public static ArrayList<String> foundWords(String playaLetters, String pattern, String beginsWith, String endsWith, String mustContain, String mustContainLetters, Integer amountOfBlankTiles, String intersectsWord) throws IOException {
         // This function searches wordlists and finds words that could be constructed with the given letters in the given space.

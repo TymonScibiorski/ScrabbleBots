@@ -12,7 +12,7 @@ public class Main {
 
         try{
 //            ArrayList<String> wordsForOutput = Algo.output("", "", "", "", "", "", "", 15, 0);
-            ArrayList<String> wordsForOutput = Algo.output("dc", "", "__o__", "", "", "", "", 0);
+            ArrayList<String> wordsForOutput = Algo.output("", "", "", "", "", "", "", 0);
 
             for (String word : wordsForOutput){
 
