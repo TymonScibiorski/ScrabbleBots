@@ -42,6 +42,7 @@ If at least one exists, return true.
 Otherwise, return false.
 
 Second way:
-
+Scheme drawn, time to write it here.
+TODO: Write the thought process for this function
 
  */

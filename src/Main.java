@@ -11,8 +11,10 @@ public class Main {
         //TODO: Write a function that will calculate how many points a given word would yield
 
         try{
-//            ArrayList<String> wordsForOutput = Algo.output("", "", "", "", "", "", "", 15, 0);
-            ArrayList<String> wordsForOutput = Algo.output("", "", "", "", "", "", "", 0);
+            String playaLetters = "m";
+//            ArrayList<String> wordsForOutput = Algo.output(playaLetters, "", "", "", "o", "", "", 0);
+//            ArrayList<String> wordsForOutput = Algo.output(playaLetters, "", "", "", "", "o", "", 0);
+            ArrayList<String> wordsForOutput = Algo.output(playaLetters, "", "", "", "", "", "", 0);
 
             for (String word : wordsForOutput){
 
