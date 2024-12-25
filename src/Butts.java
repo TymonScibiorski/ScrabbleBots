@@ -5,6 +5,23 @@ public class Butts {
 //    public boolean doesWordExist(){
 //        // This function has much room for improvement. Since it will be used many times, a class could be created, which would hold the dictionary, allowing it bo be binarySearched.
 //    }
+    public boolean doesWordExist(String word) {
+        int wordLength = word.length();
+        String[] appropriateWordList = appropriateWordList(wordLength);
+
+        return wordInWordList(word, appropriateWordList);
+    }
+
+    public static boolean wordInWordList(String word, String[] wordList) {
+        return false;
+        // Implement binary search.
+    }
+
+    public static String[] appropriateWordList(int wordLength) {
+        return new String[wordLength];
+        // If (wordList) == null -> return new
+        // Else -> return the existing one
+    }
 }
 
 /*
