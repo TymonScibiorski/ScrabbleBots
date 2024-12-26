@@ -10,6 +10,8 @@ public class Main {
 
         //TODO: Write a function that will calculate how many points a given word would yield
 
+        //TODO: Remake foundWords to work on bufferedReaders and streams
+
         try{
             String playaLetters = "m";
 //            ArrayList<String> wordsForOutput = Algo.output(playaLetters, "", "", "", "o", "", "", 0);
