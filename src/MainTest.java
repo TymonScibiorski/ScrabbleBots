@@ -11,7 +11,10 @@ public class MainTest {
     public void foundWords() throws IOException {
         String[] strArr1 =new String[]{"em", "me"};
         ArrayList<String> strArr2 = Algo.foundWords("me","", "", "", "", "", 0, "");
+        Assert.assertTrue(areStrArrsSame(strArr1, strArr2));
 
+        strArr1 = new String[]{"aa","ag","as","at","fa","fi","in","na","ni","si","ta","ts","aaa","aft","aga","agi","ais","ana","ani","ans","ant","asa","ata","fag","fai","fan","fas","fig","fin","fis","fit","gaf","gai","gan","gif","gin","gis","git","gna","inf","nai","nas","nat","nit","sag","sia","sit","taf","tag","tai","tan","tas","afta","agan","agat","agia","ansa","anta","asan","faga","fagi","fana","fang","fani","fant","fasa","fata","fiat","figa","fina","finn","fint","fita","gafa","gana","gani","gasi","gifa","gina","gita","gnat","infa","inna","naan","naft","naga","nagi","nasi","nata","ngan","nita","saga","sagi","sani","sann","sati","sian","siat","sina","sita","snif","staf","stai","stan","tafa","taga","tagi","tana","tang","tani","afgan","agnat","angin","angst","annat","asana","asani","fagas","fagin","fanga","fangi","fanta","fasti","finna","finta","gania","gitan","gitna","gnana","gnani","gnata","istna","naana","nafta","nagan","nagna","nasta","natia","ngana","nisan","sagan","sanna","siana","siata","signa","tafia","tagin","tanga","tangi","tania","tanin","afagia","afgana","afgani","aganin","agatis","agnata","ananas","angina","asania","fagasa","fagasi","fagina","gitana","gnania","infant","nagana","nagina","nastia","nisana","safian","sagana","satang","stania","stanin","tagina","tanina","aganina","agatisa","ganiana","infanta","nagania","naginat","nasiana","satanga","satangi","stanina","naginata","nagniata","nastania","saignant",};
+        strArr2 = Algo.foundWords("afganistan","", "", "", "", "", 0, "");
         Assert.assertTrue(areStrArrsSame(strArr1, strArr2));
     }
 
