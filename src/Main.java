@@ -13,7 +13,7 @@ public class Main {
         //TODO: Remake foundWords to work on bufferedReaders and streams
 
         try{
-            String playaLetters = "m";
+            String playaLetters = "me";
 //            ArrayList<String> wordsForOutput = Algo.output(playaLetters, "", "", "", "o", "", "", 0);
 //            ArrayList<String> wordsForOutput = Algo.output(playaLetters, "", "", "", "", "o", "", 0);
             ArrayList<String> wordsForOutput = Algo.output(playaLetters, "", "", "", "", "", "", 0);

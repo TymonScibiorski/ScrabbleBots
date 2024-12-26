@@ -1,12 +1,27 @@
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 
 public class MainTest {
 
     @Test
-    public void foundWords() {
+    public void foundWords() throws IOException {
+        String[] strArr1 =new String[]{"em", "me"};
+        ArrayList<String> strArr2 = Algo.foundWords("me","", "", "", "", "", 0, "");
 
+        Assert.assertTrue(areStrArrsSame(strArr1, strArr2));
+    }
+
+    public static boolean areStrArrsSame(String[] arr1, ArrayList<String> arr2) {
+        for (int i = 0; i < (arr1.length+ arr2.size())/2; i++) {
+            if (!(arr1[i].equals(arr2.get(i)))) {
+                return false;
+            }
+        }
+        return true;
     }
 
 

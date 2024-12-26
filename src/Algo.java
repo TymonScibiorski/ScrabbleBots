@@ -5,10 +5,12 @@ import java.util.*;
 
 public class Algo {
     public static ArrayList<String> output(String lettersStr, String intersectsWord, String pattern, String mustContainPhrase, String beginsWith, String endsIn, String mustContainLetters, Integer amountOfBlankTiles) throws IOException {
-        lettersStr += mustContainPhrase + beginsWith + endsIn;
+        StringBuilder playaLetters = new StringBuilder(lettersStr + mustContainLetters + beginsWith + endsIn);
 
-        return foundWords(lettersStr, pattern, beginsWith, endsIn, mustContainPhrase, mustContainLetters, amountOfBlankTiles, intersectsWord);
+        return foundWords(String.valueOf(playaLetters), pattern, beginsWith, endsIn, mustContainPhrase, mustContainLetters, amountOfBlankTiles, intersectsWord);
     }
+
+    //The code commented out below is to be a remake of foundWords to work on Stack and a function that would calculate how many points a given word would yield.
 
 //    public static Stack<String> foundWordsNew(String playaLetters, String pattern, String beginsWith, String endsWith, String mustContain, String mustContainLetters, Integer amountOfBlankTiles, String intersectsWord) throws IOException {
 //        // This function searches wordlists and finds words that could be constructed with the given letters in the given space.
@@ -43,6 +45,8 @@ public class Algo {
 //
 //
 //    }
+
+
 
     public static ArrayList<String> foundWords(String playaLetters, String pattern, String beginsWith, String endsWith, String mustContain, String mustContainLetters, Integer amountOfBlankTiles, String intersectsWord) throws IOException {
         // This function searches wordlists and finds words that could be constructed with the given letters in the given space.
@@ -89,7 +93,6 @@ public class Algo {
         if (!containsLetters(word, mustContainLetters)) {
             return false;
         }
-
 
         return true;
     }
