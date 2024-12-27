@@ -2,6 +2,8 @@ import java.io.*;
 import java.util.*;
 
 public class Algo {
+
+
     public static ArrayList<String> output(String lettersStr, String intersectsWord, String pattern, String mustContainPhrase, String beginsWith, String endsIn, String mustContainLetters, Integer amountOfBlankTiles) throws IOException {
         StringBuilder playaLetters = new StringBuilder(lettersStr + mustContainLetters + beginsWith + endsIn);
 
@@ -196,25 +198,7 @@ public class Algo {
         return true;
     }
 
-    public boolean doLettersMatch(String word, HashMap<Character, Integer> playaLetters, Integer amountOfBlankTiles) {
-        HashMap<Character, Integer> checkedWord = stringToHashMap(word);
 
-        // Foring through letters in the checked word
-        for (Map.Entry<Character, Integer> entry : checkedWord.entrySet()) {
-            int amountOfTheCheckedLetterInPlayaLetters = playaLetters.getOrDefault(entry.getKey(), 0); //Checks how many times a given letter is in PlayaLetters
-
-            if ((amountOfTheCheckedLetterInPlayaLetters < checkedWord.get(entry.getKey()))) { // If there isn't enough letters in playaLetters to construct the given word, it will return a false
-
-                if (amountOfTheCheckedLetterInPlayaLetters == 0 && checkedWord.get(entry.getKey()) <= amountOfBlankTiles) { //Unless there's enough blanks. If there is, other letters will be checked
-                    amountOfBlankTiles -= checkedWord.get(entry.getKey()) - amountOfTheCheckedLetterInPlayaLetters;
-                    continue;
-                }
-                return false;
-            }
-        }
-
-        return true;
-    }
 
 
     public static ArrayList<Scanner> scannersToBeSearched(int constraints) throws FileNotFoundException {
@@ -228,6 +212,7 @@ public class Algo {
 
         return scannersToBeSearched;
     }
+
 
     public static int constraints(String playaLettres, String pattern, String intersectsWord, int amountOfBlankTiles) {
         String allAvailableLetters = playaLettres + pattern.replace("_", "");
@@ -248,7 +233,7 @@ public class Algo {
         return wordMaxLength;
     }
 
-    private static HashMap<Character, Integer> stringToHashMap(String word) {
+    public static HashMap<Character, Integer> stringToHashMap(String word) {
         HashMap<Character, Integer> map = new HashMap<>();
 
         for(char c : word.toCharArray()){
