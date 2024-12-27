@@ -1,6 +1,4 @@
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 public class Algo {
@@ -46,13 +44,23 @@ public class Algo {
 //
 //    }
 
-
+//    public static ArrayList<String> foundWordsOnReaders(String playaLetters, String pattern, String beginsWith, String endsWith, String mustContain, String mustContainLetters, Integer amountOfBlankTiles, String intersectsWord) throws IOException {
+//        // This function searches wordlists and finds words that could be constructed with the given letters in the given space.
+//        int constraints = constraintsNew(playaLetters, pattern, intersectsWord, amountOfBlankTiles);
+//        Stream<String> dataFromAppropriateDictionaries = readersToBeSearched(constraints);
+////        ArrayList<Scanner> scanners = scannersToBeSearched(constraintsNew(playaLetters, pattern, intersectsWord, amountOfBlankTiles));
+//
+//
+//        return dataFromAppropriateDictionaries
+//                .filter(String -> canWordBeUsed());
+//    }
 
     public static ArrayList<String> foundWords(String playaLetters, String pattern, String beginsWith, String endsWith, String mustContain, String mustContainLetters, Integer amountOfBlankTiles, String intersectsWord) throws IOException {
         // This function searches wordlists and finds words that could be constructed with the given letters in the given space.
-        ArrayList<String> words = new ArrayList<>();
 //        ArrayList<BufferedReader> readers = readersToBeSearched(space, letters);
-        ArrayList<Scanner> scanners = scannersToBeSearched(constraintsNew(playaLetters, pattern, intersectsWord, amountOfBlankTiles));
+        ArrayList<String> words = new ArrayList<>();
+        int constraints = constraints(playaLetters, pattern, intersectsWord, amountOfBlankTiles);
+        ArrayList<Scanner> scanners = scannersToBeSearched(constraints);
 
 
         for (Scanner scanner : scanners) {
@@ -188,6 +196,26 @@ public class Algo {
         return true;
     }
 
+    public boolean doLettersMatch(String word, HashMap<Character, Integer> playaLetters, Integer amountOfBlankTiles) {
+        HashMap<Character, Integer> checkedWord = stringToHashMap(word);
+
+        // Foring through letters in the checked word
+        for (Map.Entry<Character, Integer> entry : checkedWord.entrySet()) {
+            int amountOfTheCheckedLetterInPlayaLetters = playaLetters.getOrDefault(entry.getKey(), 0); //Checks how many times a given letter is in PlayaLetters
+
+            if ((amountOfTheCheckedLetterInPlayaLetters < checkedWord.get(entry.getKey()))) { // If there isn't enough letters in playaLetters to construct the given word, it will return a false
+
+                if (amountOfTheCheckedLetterInPlayaLetters == 0 && checkedWord.get(entry.getKey()) <= amountOfBlankTiles) { //Unless there's enough blanks. If there is, other letters will be checked
+                    amountOfBlankTiles -= checkedWord.get(entry.getKey()) - amountOfTheCheckedLetterInPlayaLetters;
+                    continue;
+                }
+                return false;
+            }
+        }
+
+        return true;
+    }
+
 
     public static ArrayList<Scanner> scannersToBeSearched(int constraints) throws FileNotFoundException {
         // This function returns scanners of wordlists that will be searched through to find words that could be constructed with the given letters in the given space.
@@ -201,20 +229,7 @@ public class Algo {
         return scannersToBeSearched;
     }
 
-    public static int constraints(int space, int amountOfLetters, int patternLength) {
-        int[] numbers = {space, amountOfLetters};
-
-        if (patternLength != 0){
-            numbers = new int[]{space, amountOfLetters, patternLength};
-        }
-
-        Arrays.sort(numbers);
-
-        return numbers[0];
-    }
-
-
-    public static int constraintsNew(String playaLettres, String pattern, String intersectsWord, int amountOfBlankTiles) {
+    public static int constraints(String playaLettres, String pattern, String intersectsWord, int amountOfBlankTiles) {
         String allAvailableLetters = playaLettres + pattern.replace("_", "");
         int wordMaxLength = allAvailableLetters.length()+amountOfBlankTiles;
         if (!(intersectsWord.isBlank())){
@@ -257,16 +272,15 @@ public class Algo {
         return map;
     }
 
-//    public static ArrayList<BufferedReader> readersToBeSearched(int space, HashMap<Character, Integer> letters) throws FileNotFoundException {
+//    public static Stream<String> readersToBeSearched(int constraints) throws FileNotFoundException {
 //        // This function returns scanners of wordlists that will be searched through to find words that could be constructed with the given letters in the given space.
 //        ArrayList<BufferedReader> readersToBeSearched = new ArrayList<>();
-//        int constraints = constraints(space, letters);
 //
 //        for (int i = constraints; i > 1; i--) {
 //            String pathname = "src\\words" + i + ".txt";
 //            readersToBeSearched.add(new BufferedReader(new FileReader(pathname)));
 //        }
 //
-//        return readersToBeSearched;
+//        return readersToBeSearched.stream();
 //    }
 }

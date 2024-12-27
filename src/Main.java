@@ -10,7 +10,11 @@ public class Main {
 
         //TODO: Write a function that will calculate how many points a given word would yield
 
+
+        //TODO: Remake doLettersMatch to non-static, because it could benefit from having saved playaLettersHashMap and not creating it on every word.
+
         //TODO: Remake foundWords to work on bufferedReaders and streams
+        //TODO: Work on readersToBeSearched
 
         try{
             String playaLetters = "afganistan";
