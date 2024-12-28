@@ -6,9 +6,9 @@ import java.util.ArrayList;
         //TODO: Write a function that will calculate how many points a given word would yield
 
 
-        //TODO: #1 Remake doLettersMatch to non-static, because it could benefit from having saved playaLettersHashMap and not creating it on every word.
+        //TODO: Remake doLettersMatch to non-static, because it could benefit from having saved playaLettersHashMap and not creating it on every word.
 
-        //TODO: Remake foundWords to work on bufferedReaders and streams
+        //TODO: #1 Remake foundWords to work on bufferedReaders and streams
         //TODO: Work on readersToBeSearched
 
 public class Main {

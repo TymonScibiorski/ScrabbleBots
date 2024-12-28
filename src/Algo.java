@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.*;
+import java.util.stream.Stream;
 
 public class Algo {
 
@@ -268,4 +269,21 @@ public class Algo {
 //
 //        return readersToBeSearched.stream();
 //    }
+
+    public static Stream<String> streamToSearch(){
+        Stream<String> outStream = Stream.empty();
+
+        return outStream;
+    }
+
+    public static BufferedReader readerOfWordList(int wordListNumber) throws FileNotFoundException {
+        return new BufferedReader(new FileReader(pathNameGenerator(wordListNumber)));
+    }
+
+    public static String pathNameGenerator(int wordListNumber){
+        if (1<wordListNumber && wordListNumber<16) {
+            return "src\\words" + wordListNumber + ".txt";
+        }
+        return "";
+    }
 }

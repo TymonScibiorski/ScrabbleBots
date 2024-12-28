@@ -129,4 +129,23 @@ public class MainTest {
         Assert.assertFalse(Algo.canIntersect("zupa", "tlić", "zupa", 1));
 //        Assert.assertFalse(Algo.containsAtLeastOneLetterFrom("", ""));
     }
+
+    @Test
+    public void testPathNameGenerator(){
+        Assert.assertEquals("src\\words2.txt", Algo.pathNameGenerator(2));
+        Assert.assertEquals("src\\words3.txt", Algo.pathNameGenerator(3));
+        Assert.assertEquals("src\\words4.txt", Algo.pathNameGenerator(4));
+        Assert.assertEquals("src\\words5.txt", Algo.pathNameGenerator(5));
+        Assert.assertEquals("src\\words6.txt", Algo.pathNameGenerator(6));
+        Assert.assertEquals("src\\words7.txt", Algo.pathNameGenerator(7));
+        Assert.assertEquals("src\\words8.txt", Algo.pathNameGenerator(8));
+        Assert.assertEquals("src\\words9.txt", Algo.pathNameGenerator(9));
+        Assert.assertEquals("src\\words10.txt", Algo.pathNameGenerator(10));
+        Assert.assertEquals("src\\words11.txt", Algo.pathNameGenerator(11));
+        Assert.assertEquals("src\\words12.txt", Algo.pathNameGenerator(12));
+        Assert.assertEquals("src\\words13.txt", Algo.pathNameGenerator(13));
+        Assert.assertEquals("src\\words14.txt", Algo.pathNameGenerator(14));
+        Assert.assertEquals("src\\words15.txt", Algo.pathNameGenerator(15));
+
+    }
     }
