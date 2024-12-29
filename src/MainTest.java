@@ -44,7 +44,7 @@ public class MainTest {
     }
 
     @Test
-    public void testDoesBeginningAnndEndMatch(){
+    public void testDoesBeginningAndEndMatch(){
         Assert.assertTrue(Algo.doesBeginningAndEndMatch("afganistan", "afgani",""));
         Assert.assertTrue(Algo.doesBeginningAndEndMatch("afganistan", "","stan"));
 
@@ -52,8 +52,13 @@ public class MainTest {
         Assert.assertFalse(Algo.doesBeginningAndEndMatch("afganistan", "fag",""));
     }
 
+//    @Test
+//    public void testDoesBeginningMatches(){
+//        Assert.assertTrue(Algo.beginningMatches(""));
+//    }
+
     @Test
-    public void testConstrainsNew(){
+    public void testConstrains(){
         Assert.assertEquals(4, Algo.constraints("zupatży", "_u__", "ulep", 2));
         Assert.assertEquals(2, Algo.constraints("afganistan", "_a", "zupa", 0));
         Assert.assertEquals(15, Algo.constraints("rrrrrrr", "a_a_a_a_a_a_a_a", "", 0));

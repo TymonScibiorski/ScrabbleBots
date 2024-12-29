@@ -48,15 +48,15 @@ public class Algo {
 //
 //    }
 
-    public static ArrayList<String> foundWordsOnReaders(String playaLetters, String pattern, String beginsWith, String endsWith, String mustContain, String mustContainLetters, Integer amountOfBlankTiles, String intersectsWord) throws IOException {
-        // This function searches wordlists and finds words that could be constructed with the given letters in the given space.
-        int constraints = constraints(playaLetters, pattern, intersectsWord, amountOfBlankTiles);
-        Stream<String> dataFromAppropriateDictionaries = streamToSearch(constraints);
-
-        return dataFromAppropriateDictionaries
-                .filter(word -> canWordBeUsed(word, playaLetters, pattern, beginsWith, endsWith, mustContain, mustContainLetters, amountOfBlankTiles, intersectsWord))
-                .collect(Collectors.toCollection(ArrayList::new));
-    }
+//    public static ArrayList<String> foundWordsOnReaders(String playaLetters, String pattern, String beginsWith, String endsWith, String mustContain, String mustContainLetters, Integer amountOfBlankTiles, String intersectsWord) throws IOException {
+//        // This function searches wordlists and finds words that could be constructed with the given letters in the given space.
+//        int constraints = constraints(playaLetters, pattern, intersectsWord, amountOfBlankTiles);
+//        Stream<String> dataFromAppropriateDictionaries = streamToSearch(constraints);
+//
+//        return dataFromAppropriateDictionaries
+//                .filter(word -> canWordBeUsed(word, playaLetters, pattern, beginsWith, endsWith, mustContain, mustContainLetters, amountOfBlankTiles, intersectsWord))
+//                .collect(Collectors.toCollection(ArrayList::new));
+//    }
 
     public static ArrayList<String> foundWords(String playaLetters, String pattern, String beginsWith, String endsWith, String mustContain, String mustContainLetters, Integer amountOfBlankTiles, String intersectsWord) throws IOException {
         // This function searches wordlists and finds words that could be constructed with the given letters in the given space.
@@ -178,6 +178,14 @@ public class Algo {
         return true;
     }
 
+    public static boolean beginningMatches(String word, String beginsWith) {
+        Stack<Character> wordStack = stringToCharStack(word);
+        Stack<Character> beginStack = stringToCharStack(beginsWith);
+
+        while
+    }
+
+
     public static boolean doLettersMatch(String word, String playaLettersStr, Integer amountOfBlankTiles) {
         HashMap<Character, Integer> checkedWord = stringToHashMap(word);
         HashMap<Character, Integer> playaLetters = stringToHashMap(playaLettersStr);
@@ -198,8 +206,6 @@ public class Algo {
 
         return true;
     }
-
-
 
 
     public static ArrayList<Scanner> scannersToBeSearched(int constraints) throws FileNotFoundException {
@@ -270,9 +276,9 @@ public class Algo {
 //        return readersToBeSearched.stream();
 //    }
 
-    public static Stream<String> streamToSearch(int constraints) throws FileNotFoundException {
-
-    }
+//    public static Stream<String> streamToSearch(int constraints) throws FileNotFoundException {
+//        return
+//    }
 
     public static BufferedReader readerOfWordList(int wordListNumber) throws FileNotFoundException {
         return new BufferedReader(new FileReader(pathNameGenerator(wordListNumber)));

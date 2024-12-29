@@ -17,10 +17,13 @@ public class Main {
 
 
         try{
-            String playaLetters = "afganistan";
+            String playaLetters = "pcwmz";
+            String pattern = "";
+            String intersectsWord = "";
 //            ArrayList<String> wordsForOutput = Algo.output(playaLetters, "", "", "", "o", "", "", 0);
 //            ArrayList<String> wordsForOutput = Algo.output(playaLetters, "", "", "", "", "o", "", 0);
-            ArrayList<String> wordsForOutput = Algo.output(playaLetters, "", "", "", "", "", "", 0);
+            ArrayList<String> wordsForOutput = Algo.output(playaLetters, intersectsWord, pattern, "", "", "", "", 0);
+
 
             for (String word : wordsForOutput){
 
