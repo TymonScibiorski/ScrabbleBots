@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Algo {
@@ -47,16 +48,15 @@ public class Algo {
 //
 //    }
 
-//    public static ArrayList<String> foundWordsOnReaders(String playaLetters, String pattern, String beginsWith, String endsWith, String mustContain, String mustContainLetters, Integer amountOfBlankTiles, String intersectsWord) throws IOException {
-//        // This function searches wordlists and finds words that could be constructed with the given letters in the given space.
-//        int constraints = constraintsNew(playaLetters, pattern, intersectsWord, amountOfBlankTiles);
-//        Stream<String> dataFromAppropriateDictionaries = readersToBeSearched(constraints);
-////        ArrayList<Scanner> scanners = scannersToBeSearched(constraintsNew(playaLetters, pattern, intersectsWord, amountOfBlankTiles));
-//
-//
-//        return dataFromAppropriateDictionaries
-//                .filter(String -> canWordBeUsed());
-//    }
+    public static ArrayList<String> foundWordsOnReaders(String playaLetters, String pattern, String beginsWith, String endsWith, String mustContain, String mustContainLetters, Integer amountOfBlankTiles, String intersectsWord) throws IOException {
+        // This function searches wordlists and finds words that could be constructed with the given letters in the given space.
+        int constraints = constraints(playaLetters, pattern, intersectsWord, amountOfBlankTiles);
+        Stream<String> dataFromAppropriateDictionaries = streamToSearch(constraints);
+
+        return dataFromAppropriateDictionaries
+                .filter(word -> canWordBeUsed(word, playaLetters, pattern, beginsWith, endsWith, mustContain, mustContainLetters, amountOfBlankTiles, intersectsWord))
+                .collect(Collectors.toCollection(ArrayList::new));
+    }
 
     public static ArrayList<String> foundWords(String playaLetters, String pattern, String beginsWith, String endsWith, String mustContain, String mustContainLetters, Integer amountOfBlankTiles, String intersectsWord) throws IOException {
         // This function searches wordlists and finds words that could be constructed with the given letters in the given space.
@@ -207,7 +207,7 @@ public class Algo {
         ArrayList<Scanner> scannersToBeSearched = new ArrayList<>();
 
         for (int i = 2; i <= constraints; i++) {
-            String pathname = "src\\words" + i + ".txt";
+            String pathname = pathNameGenerator(i);
             scannersToBeSearched.add(new Scanner(new FileReader(pathname)));
         }
 
@@ -270,10 +270,8 @@ public class Algo {
 //        return readersToBeSearched.stream();
 //    }
 
-    public static Stream<String> streamToSearch(){
-        Stream<String> outStream = Stream.empty();
+    public static Stream<String> streamToSearch(int constraints) throws FileNotFoundException {
 
-        return outStream;
     }
 
     public static BufferedReader readerOfWordList(int wordListNumber) throws FileNotFoundException {

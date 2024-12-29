@@ -132,6 +132,12 @@ public class MainTest {
 
     @Test
     public void testPathNameGenerator(){
+        Assert.assertEquals("", Algo.pathNameGenerator(0));
+        Assert.assertEquals("", Algo.pathNameGenerator(1));
+        Assert.assertEquals("", Algo.pathNameGenerator(16));
+        Assert.assertEquals("", Algo.pathNameGenerator(17));
+
+
         Assert.assertEquals("src\\words2.txt", Algo.pathNameGenerator(2));
         Assert.assertEquals("src\\words3.txt", Algo.pathNameGenerator(3));
         Assert.assertEquals("src\\words4.txt", Algo.pathNameGenerator(4));
