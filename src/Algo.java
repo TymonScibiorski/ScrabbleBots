@@ -178,12 +178,12 @@ public class Algo {
         return true;
     }
 
-    public static boolean beginningMatches(String word, String beginsWith) {
-        Stack<Character> wordStack = stringToCharStack(word);
-        Stack<Character> beginStack = stringToCharStack(beginsWith);
-
-        while
-    }
+//    public static boolean beginningMatches(String word, String beginsWith) {
+//        Stack<Character> wordStack = stringToCharStack(word);
+//        Stack<Character> beginStack = stringToCharStack(beginsWith);
+//
+//        while
+//    }
 
 
     public static boolean doLettersMatch(String word, String playaLettersStr, Integer amountOfBlankTiles) {

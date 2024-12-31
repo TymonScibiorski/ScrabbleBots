@@ -1,15 +1,17 @@
 import java.io.IOException;
 import java.util.ArrayList;
-        //TODO: Write a function that will take a word from the board and come up with a word that touches it, but does not intersect it.
-        //The new word would butt the word from board, requiring to make up a new word from playaLetters, that creates a new word with word from the board
+//TODO: Write a function that will take a word from the board and come up with a word that touches it, but does not intersect it.
+//The new word would butt the word from board, requiring to make up a new word from playaLetters, that creates a new word with word from the board
 
-        //TODO: Write a function that will calculate how many points a given word would yield
+//TODO: Write a function that will calculate how many points a given word would yield
 
 
-        //TODO: Remake doLettersMatch to non-static, because it could benefit from having saved playaLettersHashMap and not creating it on every word.
+//TODO: Remake doLettersMatch to non-static, because it could benefit from having saved playaLettersHashMap and not creating it on every word.
 
-        //TODO: #1 Remake foundWords to work on bufferedReaders and streams
-        //TODO: Work on readersToBeSearched
+//TODO: #1 Remake foundWords to work on bufferedReaders and streams
+//TODO: Work on readersToBeSearched
+
+//TODO: Rework beginningAndEndMatcher
 
 public class Main {
     public static void main(String[] args) {

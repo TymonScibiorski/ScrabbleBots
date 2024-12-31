@@ -1,3 +1,10 @@
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Butts {
 //    private String[] dictionary2;
 //
@@ -22,6 +29,21 @@ public class Butts {
         // If (wordList) == null -> return new
         // Else -> return the existing one
     }
+
+    public static String[] createWordList(int wordLength) throws IOException {
+        List<String> listOfStrings = new ArrayList<String>();
+        BufferedReader bf = new BufferedReader(new FileReader(Algo.pathNameGenerator(wordLength)));
+
+        String line = bf.readLine();
+        while (line != null) {
+            listOfStrings.add(line);
+            line = bf.readLine();
+        }
+
+        bf.close();
+
+        return listOfStrings.toArray(new String[0]);
+    }
 }
 
 /*
@@ -36,13 +58,18 @@ SECOND WAY green-lights a word that would lie parallel to the set word.
 
 First way:
 Take the set word
-Prefix and suffix it with each single letter from playaLetters.
-Open up a dictionary of set word .length() +1 and test if all words resulting from the previous step exist.
-If at least one exists, return true.
+Prefix and suffix it with each single letter from the tested word, creating a list of new Strings.
+Test all the resulting String with doesWordExist. If at least one returns true, return true.
 Otherwise, return false.
 
 Second way:
+
 Scheme drawn, time to write it here.
 TODO: Write the thought process for this function
+
+
+The function doesWordExist has to be really fast. It will be used many times for a single set of words, binarySearch and memoisation is to be implemented.
+Word list "words2.txt" will be used always and many times over, so it should be kept in memory.
+
 
  */
