@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Butts {
-//    private String[] dictionary2;
+//    private String[] words2;
 //
 //
 //    public boolean doesWordExist(){
@@ -31,9 +31,18 @@ public class Butts {
     }
 
     public static String[] createWordList(int wordLength) throws IOException {
-        List<String> listOfStrings = new ArrayList<String>();
-        BufferedReader bf = new BufferedReader(new FileReader(Algo.pathNameGenerator(wordLength)));
+        String filePath = Algo.pathNameGenerator(wordLength);
+        BufferedReader bf = getBufferedReader(filePath);
 
+        return BufferedReaderToStringArray(bf);
+    }
+
+    public static BufferedReader getBufferedReader(String path) throws FileNotFoundException {
+        return new BufferedReader(new FileReader(path));
+    }
+
+    public static String[] BufferedReaderToStringArray(BufferedReader bf) throws IOException {
+        List<String> listOfStrings = new ArrayList<String>();
         String line = bf.readLine();
         while (line != null) {
             listOfStrings.add(line);
