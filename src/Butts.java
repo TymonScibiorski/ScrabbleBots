@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Butts {
-//    private String[] words2;
+    private static String[] wordsStringArr2;
 //
 //
 //    public boolean doesWordExist(){
@@ -14,7 +14,7 @@ public class Butts {
 //    }
     public boolean doesWordExist(String word) {
         int wordLength = word.length();
-        String[] appropriateWordList = appropriateWordList(wordLength);
+        String[] appropriateWordList = getOrCreate_WordList(wordLength);
 
         return wordInWordList(word, appropriateWordList);
     }
@@ -24,10 +24,15 @@ public class Butts {
         // Implement binary search.
     }
 
-    public static String[] appropriateWordList(int wordLength) {
+    public static String[] getOrCreate_WordList(int wordLength) {
         return new String[wordLength];
-        // If (wordList) == null -> return new
+        // This function assumes that all wordLists have been declared, but not necessarily initialised.
+        // If (wordList) == null -> create one
         // Else -> return the existing one
+    }
+
+    public void declareAllWordLists(){
+        String[] wordsStringArr2;
     }
 
     public static String[] createWordList(int wordLength) throws IOException {
@@ -42,7 +47,7 @@ public class Butts {
     }
 
     public static String[] BufferedReaderToStringArray(BufferedReader bf) throws IOException {
-        List<String> listOfStrings = new ArrayList<String>();
+        List<String> listOfStrings = new ArrayList<>();
         String line = bf.readLine();
         while (line != null) {
             listOfStrings.add(line);
