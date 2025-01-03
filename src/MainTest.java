@@ -52,10 +52,17 @@ public class MainTest {
         Assert.assertFalse(Algo.doesBeginningAndEndMatch("afganistan", "fag",""));
     }
 
-//    @Test
-//    public void testDoesBeginningMatches(){
-//        Assert.assertTrue(Algo.beginningMatches(""));
-//    }
+    @Test
+    public void testDoesBeginningMatch(){
+        Assert.assertTrue(Algo.beginningMatches("abba", "a"));
+        Assert.assertTrue(Algo.beginningMatches("abba", "ab"));
+        Assert.assertTrue(Algo.beginningMatches("abba", "abb"));
+        Assert.assertTrue(Algo.beginningMatches("abba", "abba"));
+
+        Assert.assertFalse(Algo.beginningMatches("abba", "b"));
+        Assert.assertFalse(Algo.beginningMatches("abba", "ba"));
+        Assert.assertFalse(Algo.beginningMatches("abba", "bba"));
+    }
 
     @Test
     public void testConstrains(){
