@@ -19,9 +19,9 @@ public class Main {
 
 
         try{
-            String playaLetters = "pcwmz";
+            String playaLetters = "diźzomz";
             String pattern = "";
-            String intersectsWord = "";
+            String intersectsWord = "ubrać";
 //            ArrayList<String> wordsForOutput = Algo.output(playaLetters, "", "", "", "o", "", "", 0);
 //            ArrayList<String> wordsForOutput = Algo.output(playaLetters, "", "", "", "", "o", "", 0);
             ArrayList<String> wordsForOutput = Algo.output(playaLetters, intersectsWord, pattern, "", "", "", "", 0);

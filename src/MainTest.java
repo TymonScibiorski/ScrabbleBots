@@ -65,6 +65,18 @@ public class MainTest {
     }
 
     @Test
+    public void testDoesEndMatch(){
+        Assert.assertTrue(Algo.endMatches("abba", "a"));
+        Assert.assertTrue(Algo.endMatches("abba", "ba"));
+        Assert.assertTrue(Algo.endMatches("abba", "bba"));
+        Assert.assertTrue(Algo.endMatches("abba", "abba"));
+
+        Assert.assertFalse(Algo.endMatches("abba", "b"));
+        Assert.assertFalse(Algo.endMatches("abba", "bb"));
+        Assert.assertFalse(Algo.endMatches("abba", "abb"));
+    }
+
+    @Test
     public void testConstrains(){
         Assert.assertEquals(4, Algo.constraints("zupatży", "_u__", "ulep", 2));
         Assert.assertEquals(2, Algo.constraints("afganistan", "_a", "zupa", 0));

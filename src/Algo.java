@@ -191,6 +191,9 @@ public class Algo {
         return beginStack.isEmpty();
     }
 
+    public static boolean endMatches(String word, String endsWith){
+        return false;
+    }
 
     public static boolean doLettersMatch(String word, String playaLettersStr, Integer amountOfBlankTiles) {
         HashMap<Character, Integer> checkedWord = stringToHashMap(word);
