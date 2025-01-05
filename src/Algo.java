@@ -179,16 +179,16 @@ public class Algo {
     }
 
     public static boolean beginningMatches(String word, String beginsWith) {
-        Stack<Character> wordStack = stringToCharStack(word);
-        Stack<Character> beginStack = stringToCharStack(beginsWith);
-
-        while (!wordStack.isEmpty() && !beginStack.isEmpty()) {
-            if (!(wordStack.pop().equals(beginStack.pop()))) {
-                break;
-            }
+        if (beginsWith.length() > word.length()) {
+            return false;
         }
 
-        return beginStack.isEmpty();
+        for (int i = 0; i < beginsWith.length(); i++) {
+            if (beginsWith.charAt(i) != word.charAt(i)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public static boolean endMatches(String word, String endsWith){
