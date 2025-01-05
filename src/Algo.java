@@ -192,7 +192,13 @@ public class Algo {
     }
 
     public static boolean endMatches(String word, String endsWith){
-        return false;
+        if (endsWith.length() > word.length()) {
+            return false;
+        }
+
+        for (int i = 0; i < endsWith.length(); i++) {
+            // Has to start from the beginning of the end of the word and beginning of endsWith
+        }
     }
 
     public static boolean doLettersMatch(String word, String playaLettersStr, Integer amountOfBlankTiles) {
