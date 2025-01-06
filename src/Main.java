@@ -21,10 +21,10 @@ public class Main {
         try{
             String playaLetters = "diźzomz";
             String pattern = "";
-            String intersectsWord = "ubrać";
+            String intersectsWord = "";
 //            ArrayList<String> wordsForOutput = Algo.output(playaLetters, "", "", "", "o", "", "", 0);
 //            ArrayList<String> wordsForOutput = Algo.output(playaLetters, "", "", "", "", "o", "", 0);
-            ArrayList<String> wordsForOutput = Algo.output(playaLetters, intersectsWord, pattern, "", "", "", "", 0);
+            ArrayList<String> wordsForOutput = Algo.output(playaLetters, intersectsWord, pattern, "", "", "mska", "", 0);
 
 
             for (String word : wordsForOutput){

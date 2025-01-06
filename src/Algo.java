@@ -178,6 +178,17 @@ public class Algo {
         return true;
     }
 
+//    public static boolean doesBeginningAndEndMatch(String word, String beginsWith, String endsWith) {
+//        if (!beginsWith.isBlank() && !beginningMatches(word, beginsWith)) {
+//            return false;
+//        }
+//        if (!endsWith.isBlank() && !endMatches(word, endsWith)) {
+//            return false;
+//        }
+//
+//        return true;
+//    }
+
     public static boolean beginningMatches(String word, String beginsWith) {
         if (beginsWith.length() > word.length()) {
             return false;
