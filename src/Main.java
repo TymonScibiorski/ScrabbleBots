@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 //TODO: Write a function that will calculate how many points a given word would yield
 
+//Perhaps remake the whole program to non-static, that way doLetters match would always be executed directly in the canWordBeUsed function.
 
 //TODO: Remake doLettersMatch to non-static, because it could benefit from having saved playaLettersHashMap and not creating it on every word.
 
